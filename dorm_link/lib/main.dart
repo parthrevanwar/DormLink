@@ -35,10 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 241, 250, 255),
       drawer: Sidebar(),
       appBar: AppBar(
         titleSpacing: 0,
-        // backgroundColor: Color.fromARGB(255, 88, 88, 173),
+        backgroundColor: Color.fromARGB(255, 241, 250, 255),
         centerTitle: true,
         // toolbarHeight: 100,
         // title: const Text(
@@ -62,41 +63,42 @@ class _MyHomePageState extends State<MyHomePage> {
           //   height: 10,
           // ),
           Center(
-              child: const Text(
+              child: Text(
             'BH-1',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
           )),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 20,
-        ),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        // margin: EdgeInsets.all(15),
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 12),
         child: GNav(
-            gap: 4,
-            color: Color.fromARGB(255, 72, 76, 82),
-            activeColor: Color.fromARGB(178, 0, 0, 0),
-            tabBackgroundColor: Color.fromARGB(100, 217, 233, 253),
-            padding: EdgeInsets.all(16),
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'home',
-              ),
-              GButton(
-                icon: Icons.search,
-                text: 'search',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'settings',
-              ),
-              GButton(
-                icon: Icons.favorite_border,
-                text: '---',
-              ),
-            ]),
+          backgroundColor: Colors.white,
+          gap: 4,
+          color: Color.fromARGB(255, 72, 76, 82),
+          activeColor: Color.fromARGB(178, 0, 0, 0),
+          tabBackgroundColor: Color.fromARGB(255, 241, 250, 255),
+          padding: EdgeInsets.all(16),
+          tabs: [
+            GButton(
+              icon: Icons.home,
+              text: 'home',
+            ),
+            GButton(
+              icon: Icons.search,
+              text: 'search',
+            ),
+            GButton(
+              icon: Icons.settings,
+              text: 'settings',
+            ),
+            GButton(
+              icon: Icons.favorite_border,
+              text: '---',
+            ),
+          ],
+        ),
       ),
     );
   }
