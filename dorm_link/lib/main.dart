@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dorm_link/sidebar.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final String name = "Shashank";
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 241, 250, 255),
       drawer: Sidebar(),
@@ -62,18 +64,55 @@ class _MyHomePageState extends State<MyHomePage> {
           // SizedBox(
           //   height: 10,
           // ),
-          Center(
+          const Center(
+            child: Text(
+              'BH-1',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+          ),
+
+          SizedBox(
+            height: 20,
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Container(
+              alignment: Alignment.centerLeft,
               child: Text(
-            'BH-1',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-          )),
+                'Hello $name',
+                style: GoogleFonts.poppins(fontSize: 15),
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ),
+          Text(
+            'Hello $name',
+            textAlign: TextAlign.left,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
+            child: Center(
+              child: Container(
+                height: 140,
+                width: 320,
+                // color: Color.fromARGB(255, 74, 158, 255),
+                decoration: BoxDecoration(
+                  color: Color(0xFF4A9DFF),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Container(
         color: Colors.white,
         // margin: EdgeInsets.all(15),
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-        child: GNav(
+        child: const GNav(
           backgroundColor: Colors.white,
           gap: 4,
           color: Color.fromARGB(255, 72, 76, 82),
@@ -88,10 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
             GButton(
               icon: Icons.search,
               text: 'search',
-            ),
-            GButton(
-              icon: Icons.settings,
-              text: 'settings',
             ),
             GButton(
               icon: Icons.favorite_border,
