@@ -188,7 +188,7 @@ class ProfilePage extends StatelessWidget {
           ),
         )
       ]),
-      bottomNavigationBar: gnav(),
+      //bottomNavigationBar: gnav(),
     );
   }
 }

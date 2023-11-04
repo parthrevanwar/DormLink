@@ -2,7 +2,7 @@ import 'package:dorm_link/gnav.dart';
 import 'package:flutter/material.dart';
 
 class now_playing extends StatelessWidget {
-  now_playing({super.key});
+  const now_playing({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +188,7 @@ class now_playing extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: gnav(),
+      // bottomNavigationBar: gnav(),
     );
   }
 }

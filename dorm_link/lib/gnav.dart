@@ -31,29 +31,29 @@ class _gnavState extends State<gnav> {
         padding: EdgeInsets.all(16),
         tabs: [
           GButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyApp()));
-              setState(() {});
-            },
+            // onPressed: () {
+            //   Navigator.push(
+            //       context, MaterialPageRoute(builder: (context) => MyApp()));
+            //   setState(() {});
+            // },
             icon: Icons.home,
             text: 'Home',
           ),
           GButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => now_playing()));
-              setState(() {});
-            },
+            // onPressed: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => now_playing()));
+            //   setState(() {});
+            // },
             icon: Icons.sports_soccer,
             text: 'Search',
           ),
           GButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
-              setState(() {});
-            },
+            // onPressed: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => ProfilePage()));
+            //   setState(() {});
+            // },
             icon: Icons.note_add_outlined,
             text: 'Complaint Log',
           ),
