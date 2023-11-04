@@ -11,14 +11,14 @@ class Sidebar extends StatelessWidget {
           const UserAccountsDrawerHeader(
             // decoration: background,
             decoration: BoxDecoration(
-              color: Color.fromARGB(233, 186, 252, 255),
+              color: Color(0xFF4A9DFF),
             ),
             accountName: Text(
               'BH-1',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
-                  color: Colors.black),
+                  color: Color.fromARGB(220, 255, 255, 255)),
             ),
             accountEmail: Text(
               "IIIT-Allahabad",

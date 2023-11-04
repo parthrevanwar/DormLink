@@ -82,8 +82,8 @@ class now_playing extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 19.0, top: 14),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 19.0, top: 14),
                     child: Text('Badminton',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600)),
@@ -110,8 +110,8 @@ class now_playing extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 19.0, top: 14),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 19.0, top: 14),
                     child: Text(
                       'Table Tennis',
                       style:
@@ -144,8 +144,8 @@ class now_playing extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 19.0, top: 14),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 19.0, top: 14),
                     child: Text(
                       'Cricket',
                       style:
@@ -174,8 +174,8 @@ class now_playing extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 19.0, top: 14),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 19.0, top: 14),
                     child: Text(
                       'Football',
                       style:

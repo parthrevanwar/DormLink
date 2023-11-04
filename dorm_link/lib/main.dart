@@ -1,10 +1,10 @@
 import 'package:dorm_link/gnav.dart';
 import 'package:flutter/material.dart';
 import 'package:dorm_link/sidebar.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:dorm_link/now_playing.dart';
-import 'announcements.dart';
+// import 'package:google_nav_bar/google_nav_bar.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:dorm_link/now_playing.dart';
+// import 'announcements.dart';
 
 import './home.dart';
 import './profilepage.dart';
@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // }
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 241, 250, 255),
+      backgroundColor: const Color.fromARGB(255, 241, 250, 255),
       drawer: Sidebar(),
       appBar: AppBar(
         titleSpacing: 0,

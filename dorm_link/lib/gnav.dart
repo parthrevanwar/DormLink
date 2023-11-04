@@ -1,9 +1,10 @@
+import 'package:dorm_link/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'profilepage.dart';
 import 'now_playing.dart';
-import 'announcements.dart';
-import 'main.dart';
+// import 'announcements.dart';
+// import 'main.dart';
 
 class gnav extends StatefulWidget {
   gnav({super.key});
@@ -28,24 +29,28 @@ class _gnavState extends State<gnav> {
         padding: EdgeInsets.all(16),
         tabs: [
           GButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyApp()));
+            },
             icon: Icons.home,
-            text: 'home',
+            text: 'Home',
           ),
           GButton(
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => now_playing()));
             },
-            icon: Icons.search,
-            text: 'search',
+            icon: Icons.sports_soccer,
+            text: 'Search',
           ),
           GButton(
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfilePage()));
             },
-            icon: Icons.favorite_border,
-            text: '---',
+            icon: Icons.note_add_outlined,
+            text: 'Complaint Log',
           ),
           GButton(
             onPressed: () {

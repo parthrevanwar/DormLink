@@ -51,15 +51,15 @@ class announcements extends StatelessWidget {
                           foregroundColor: Colors.black87),
                       child: Row(
                         children: [
-                          Icon(Icons.text_snippet),
-                          SizedBox(
+                          const Icon(Icons.text_snippet),
+                          const SizedBox(
                             width: 32,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                  child: Text(
+                                  child: const Text(
                                 "Mess Rebate Form",
                                 textAlign: TextAlign.left,
                               )),
