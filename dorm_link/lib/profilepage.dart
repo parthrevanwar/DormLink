@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import './main.dart';
@@ -11,14 +9,14 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 241, 250, 255),
+      backgroundColor: const Color.fromARGB(255, 241, 250, 255),
       body: Column(children: [
         Row(
           children: [
             Expanded(
               flex: 2,
               child: Padding(
-                padding: EdgeInsets.only(top: 60, bottom: 35),
+                padding: const EdgeInsets.only(top: 60, bottom: 35),
                 child: Container(
                   decoration: const BoxDecoration(
                     color: Color(0xFF4A9DFF),
@@ -29,11 +27,11 @@ class ProfilePage extends StatelessWidget {
                   ),
 
                   width: 250,
-                  margin: EdgeInsets.only(left: 0),
+                  margin: const EdgeInsets.only(left: 0),
                   // alignment: Alignment.centerLeft,
                   // color: Color(0xFF4A9DFF),
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         left: 20.0, top: 18, bottom: 18, right: 15),
                     child: Text(
                       // style: TextStyle(),
@@ -52,7 +50,7 @@ class ProfilePage extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.fromLTRB(150, 40, 30, 10),
+              padding: const EdgeInsets.fromLTRB(150, 40, 30, 10),
               child: IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.settings),
@@ -196,7 +194,9 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(child: Icon(Icons.call)),
+              Expanded(
+                child: ElevatedButton(onPressed: null, child: Icon(Icons.call)),
+              ),
             ],
           ),
         ),

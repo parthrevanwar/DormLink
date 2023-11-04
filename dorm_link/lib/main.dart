@@ -6,6 +6,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:dorm_link/now_playing.dart';
 import 'announcements.dart';
 import 'complaints.dart';
+import 'login.dart';
 
 import './home.dart';
 import './profilepage.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 217, 233, 253)),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
