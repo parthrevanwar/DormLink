@@ -102,9 +102,9 @@ class _NewComplaintState extends State<NewComplaint> {
                     TextFormField(
                       controller: subjectController,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.subject_rounded),
-                        hintText: 'Subject',
-                        labelText: 'Subject',
+                        icon: const Icon(Icons.email),
+                        hintText: 'Roll No',
+                        labelText: 'Roll No',
                       ),
                     ),
                     SizedBox(
@@ -113,9 +113,9 @@ class _NewComplaintState extends State<NewComplaint> {
                     TextFormField(
                       controller: emailController,
                       decoration: InputDecoration(
-                        icon: const Icon(Icons.email),
-                        hintText: 'Roll No',
-                        labelText: 'Roll No',
+                        icon: const Icon(Icons.subject_rounded),
+                        hintText: 'Subject',
+                        labelText: 'Subject',
                       ),
                     ),
                     SizedBox(
