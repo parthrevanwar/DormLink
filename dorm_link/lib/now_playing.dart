@@ -24,8 +24,8 @@ class now_playing extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: Color(0xFF4A9DFF),
                       borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
+                        topRight: Radius.circular(45),
+                        bottomRight: Radius.circular(45),
                       ),
                     ),
 
@@ -211,11 +211,11 @@ class now_playing extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(left: 19.0, top: 14),
                           child: Text('Cricket',
                               textAlign: TextAlign.left,
