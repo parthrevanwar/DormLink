@@ -1,3 +1,4 @@
+import 'package:dorm_link/new_complaint.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'ticket.dart';
@@ -8,9 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'announcements.dart';
 // import 'main.dart';
 
-class complaints extends StatelessWidget {
+class complaints extends StatefulWidget {
   const complaints({super.key});
 
+  @override
+  State<complaints> createState() => _complaintsState();
+}
+
+class _complaintsState extends State<complaints> {
   @override
   Widget build(BuildContext context) {
     int numOfActiveTickets = 2;
@@ -147,8 +153,18 @@ class complaints extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton:
-            const FloatingActionButton(onPressed: null, child: Icon(Icons.add)),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewComplaint(),
+                  ),
+                );
+              });
+            },
+            child: Icon(Icons.add)),
       ),
     );
   }
