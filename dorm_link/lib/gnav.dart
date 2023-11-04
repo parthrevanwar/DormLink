@@ -1,5 +1,6 @@
 import 'package:dorm_link/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'profilepage.dart';
 import 'now_playing.dart';
@@ -14,6 +15,7 @@ class gnav extends StatefulWidget {
 }
 
 class _gnavState extends State<gnav> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,6 +34,7 @@ class _gnavState extends State<gnav> {
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyApp()));
+              setState(() {});
             },
             icon: Icons.home,
             text: 'Home',
@@ -40,6 +43,7 @@ class _gnavState extends State<gnav> {
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => now_playing()));
+              setState(() {});
             },
             icon: Icons.sports_soccer,
             text: 'Search',
@@ -48,14 +52,19 @@ class _gnavState extends State<gnav> {
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfilePage()));
+              setState(() {});
             },
             icon: Icons.note_add_outlined,
             text: 'Complaint Log',
           ),
           GButton(
+            active: index == 0,
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfilePage()));
+              setState(() {
+                // _gnavState() = ;
+              });
             },
             icon: Icons.person,
             text: 'Profile',

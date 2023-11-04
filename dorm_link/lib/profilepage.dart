@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import './main.dart';
@@ -26,7 +28,7 @@ class ProfilePage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(100.0),
               child:
-                  const Image(image: AssetImage('assets/image/shashank.jpg')),
+                  const Image(image: AssetImage('assets/images/shashank.jpg')),
             ),
           ),
         ),
@@ -50,6 +52,141 @@ class ProfilePage extends StatelessWidget {
                 color: Color(0xFF70788A),
               )),
         ),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Center(
+                        child: Text('Hostel',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                    Container(
+                      child: Center(
+                        child: Text('BH-3',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Center(
+                        child: Text('Room No',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                    Container(
+                      child: Center(
+                        child: Text('714',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 50.0),
+                        child: Text(
+                          'Caretaker',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 50.0),
+                        child: Text('Mr Ram Prakash',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(child: Icon(Icons.call)),
+            ],
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 50.0),
+                        child: Text(
+                          'Warden',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 50.0),
+                        child: Text('Dr. Bhupendra Jogi',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(child: Icon(Icons.call)),
+            ],
+          ),
+        )
       ]),
       bottomNavigationBar: gnav(),
     );
