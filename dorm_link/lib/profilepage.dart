@@ -195,7 +195,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ElevatedButton(onPressed: null, child: Icon(Icons.call)),
+                child: Icon(Icons.call),
               ),
             ],
           ),

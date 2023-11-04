@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //   Navigator.push(context,
                 //       MaterialPageRoute(builder: (context) => now_playing()));
                 // },
-                icon: Icons.search,
+                icon: Icons.sports_soccer_outlined,
                 text: 'Now Playing',
               ),
               GButton(
