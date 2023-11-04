@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mailer/mailer.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import 'profilepage.dart';
 // import 'now_playing.dart';
@@ -46,8 +47,23 @@ class complaints extends StatelessWidget {
               ),
             ),
           ),
+          // ElevatedButton(
+          //   onPressed: sendEmail,
+          //   child: Text('Register Complaint'),
+          // )
         ],
       ),
     );
+
+//     Future sendEmail({
+//       required String name,
+//       required String email,
+//       required String subject,
+//       required String message,
+//     }) async {
+//       final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+//       final response = await http.post(url);
+//       print(response.body);
+//     }
   }
 }

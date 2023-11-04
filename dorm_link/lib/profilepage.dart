@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import './main.dart';
 import './gnav.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -12,14 +13,66 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 241, 250, 255),
       body: Column(children: [
-        Container(
-          alignment: Alignment.centerRight,
-          padding: EdgeInsets.fromLTRB(20, 70, 30, 10),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
-            iconSize: 35,
-          ),
+        Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: EdgeInsets.only(top: 60, bottom: 35),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF4A9DFF),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(45),
+                      bottomRight: Radius.circular(45),
+                    ),
+                  ),
+
+                  width: 250,
+                  margin: EdgeInsets.only(left: 0),
+                  // alignment: Alignment.centerLeft,
+                  // color: Color(0xFF4A9DFF),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: 20.0, top: 18, bottom: 18, right: 15),
+                    child: Text(
+                      // style: TextStyle(),
+                      'Profile',
+                      style: GoogleFonts.poppins(
+                        height: 1.2,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.fromLTRB(150, 40, 30, 10),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.settings),
+                iconSize: 35,
+              ),
+            ),
+            // Expanded(
+            //   flex: 1,
+            //   child: ElevatedButton(
+            //     onPressed: () {},
+            //     child: Icon(Icons.add, color: Colors.white, weight: 500),
+            //     style: ElevatedButton.styleFrom(
+            //       shape: CircleBorder(),
+            //       padding: EdgeInsets.all(20),
+            //       backgroundColor: Colors.blue, // <-- Button color
+            //       foregroundColor: Colors.red, // <-- Splash color
+            //     ),
+            //   ),
+            // )
+          ],
         ),
         Container(
           width: 100,

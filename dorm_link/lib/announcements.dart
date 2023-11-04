@@ -132,6 +132,96 @@ class announcements extends StatelessWidget {
                         ],
                       )),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          minimumSize: const Size(300, 60),
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black87),
+                      child: Row(
+                        children: [
+                          Icon(Icons.text_snippet),
+                          const SizedBox(
+                            width: 32,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                  child: Text(
+                                "Mess Rebate Form",
+                                textAlign: TextAlign.left,
+                              )),
+                              SizedBox(height: 1),
+                              Text("Fill the form before 6 Nov 2023")
+                            ],
+                          )
+                        ],
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          minimumSize: const Size(300, 60),
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black87),
+                      child: Row(
+                        children: [
+                          Icon(Icons.text_snippet),
+                          const SizedBox(
+                            width: 32,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                  child: Text(
+                                "Mess Rebate Form",
+                                textAlign: TextAlign.left,
+                              )),
+                              SizedBox(height: 1),
+                              Text("Fill the form before 6 Nov 2023")
+                            ],
+                          )
+                        ],
+                      )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          minimumSize: const Size(300, 60),
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black87),
+                      child: Row(
+                        children: [
+                          Icon(Icons.text_snippet),
+                          const SizedBox(
+                            width: 32,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                  child: Text(
+                                "Mess Rebate Form",
+                                textAlign: TextAlign.left,
+                              )),
+                              SizedBox(height: 1),
+                              Text("Fill the form before 6 Nov 2023")
+                            ],
+                          )
+                        ],
+                      )),
+                ),
               ],
             ),
           ),
