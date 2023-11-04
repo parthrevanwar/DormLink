@@ -38,15 +38,16 @@ class Home extends StatelessWidget {
             // SizedBox(
             //   height: 10,
             // ),
-            const Center(
+            Center(
               child: Text(
                 'BH-1',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.bold, fontSize: 30),
               ),
             ),
-            // SizedBox(
-            //   height: 10,
-            // ),
+            SizedBox(
+              height: 10,
+            ),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -114,7 +115,7 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 0,
+              height: 10,
               // child: ListView.builder(
               //   scrollDirection: Axis.horizontal,
               //   itemCount: 4,
@@ -123,7 +124,7 @@ class Home extends StatelessWidget {
             ),
 
             Container(
-              height: 100,
+              height: 80,
               width: 320,
               // child: Text('Hello'),
 
@@ -147,7 +148,7 @@ class Home extends StatelessWidget {
                     children: [
                       Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 20.0),
+                          padding: EdgeInsets.only(top: 15.0),
                           child: Text(
                             textAlign: TextAlign.left,
                             "Dinner",
@@ -161,6 +162,9 @@ class Home extends StatelessWidget {
                   )
                 ],
               ),
+            ),
+            SizedBox(
+              height: 15,
             ),
             announcements(),
           ],

@@ -82,10 +82,18 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       body: Center(child: _widgetOptions.elementAt(selectedIndex)),
       bottomNavigationBar: Container(
-        color: Colors.white,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
+        ),
+        // color: Colors.white,
         // margin: EdgeInsets.all(15),
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
         child: GNav(
+            tabBorderRadius: 50,
             backgroundColor: Colors.white,
             gap: 4,
             color: Color.fromARGB(255, 72, 76, 82),
@@ -110,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //   Navigator.push(context,
                 //       MaterialPageRoute(builder: (context) => ProfilePage()));
                 // },
-                icon: Icons.favorite_border,
+                icon: Icons.note,
                 text: 'Complaint Log',
               ),
               GButton(

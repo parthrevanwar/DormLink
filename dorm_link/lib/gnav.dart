@@ -27,7 +27,7 @@ class _gnavState extends State<gnav> {
         gap: 4,
         color: Color.fromARGB(255, 72, 76, 82),
         activeColor: Color.fromARGB(178, 0, 0, 0),
-        tabBackgroundColor: Color.fromARGB(255, 241, 250, 255),
+        tabBackgroundColor: Color.fromARGB(255, 209, 235, 250),
         padding: EdgeInsets.all(16),
         tabs: [
           GButton(
