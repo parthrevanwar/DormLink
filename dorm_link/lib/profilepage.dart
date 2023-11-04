@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class profilepage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
+  ProfilePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +19,7 @@ class profilepage extends StatelessWidget {
           child: Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30.0),
-              child: const Image(image: AssetImage('shashank.jpg')),
+              //child: const Image(image: AssetImage('shashank.jpg')),
             ),
           ),
         ),
