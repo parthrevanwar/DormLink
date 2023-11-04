@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dorm_link/my_button.dart';
 import 'package:dorm_link/my_textfield.dart';
 import 'package:dorm_link/square_tile.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -39,15 +40,20 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 90),
 
                 // logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
+                // const Icon(
+                //   Icons.lock,
+                //   size: 100,
+                // ),
+                Text(
+                  'Login',
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w700, fontSize: 60),
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
 
                 // welcome back, you've been missed!
                 Text(
