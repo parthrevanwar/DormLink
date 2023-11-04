@@ -1,3 +1,4 @@
+import 'package:dorm_link/gnav.dart';
 import 'package:flutter/material.dart';
 import 'package:dorm_link/sidebar.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -38,6 +39,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    Home(),
+    Text(
+      'Likes',
+    ),
+    Text(
+      'Search',
+    ),
+    ProfilePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     //Widget? currentScreen = const Home();
@@ -71,50 +83,51 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Home(),
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        // margin: EdgeInsets.all(15),
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
-        child: GNav(
-          backgroundColor: Colors.white,
-          gap: 4,
-          color: Color.fromARGB(255, 72, 76, 82),
-          activeColor: Color.fromARGB(178, 0, 0, 0),
-          tabBackgroundColor: Color.fromARGB(255, 241, 250, 255),
-          padding: EdgeInsets.all(16),
-          tabs: [
-            GButton(
-              icon: Icons.home,
-              text: 'home',
-            ),
-            GButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => now_playing()));
-              },
-              icon: Icons.search,
-              text: 'search',
-            ),
-            GButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()));
-              },
-              icon: Icons.favorite_border,
-              text: '---',
-            ),
-            GButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()));
-              },
-              icon: Icons.person,
-              text: 'Profile',
-            ),
-          ],
-        ),
-      ),
+      body: Center(child: _widgetOptions.elementAt(selectedIndex)),
+      bottomNavigationBar: gnav(),
+      //Container(
+      //   color: Colors.white,
+      //   // margin: EdgeInsets.all(15),
+      //   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+      //   child: GNav(
+      //     backgroundColor: Colors.white,
+      //     gap: 4,
+      //     color: Color.fromARGB(255, 72, 76, 82),
+      //     activeColor: Color.fromARGB(178, 0, 0, 0),
+      //     tabBackgroundColor: Color.fromARGB(255, 241, 250, 255),
+      //     padding: EdgeInsets.all(16),
+      //     tabs: [
+      //       GButton(
+      //         icon: Icons.home,
+      //         text: 'home',
+      //       ),
+      //       GButton(
+      //         onPressed: () {
+      //           Navigator.push(context,
+      //               MaterialPageRoute(builder: (context) => now_playing()));
+      //         },
+      //         icon: Icons.search,
+      //         text: 'search',
+      //       ),
+      //       GButton(
+      //         onPressed: () {
+      //           Navigator.push(context,
+      //               MaterialPageRoute(builder: (context) => ProfilePage()));
+      //         },
+      //         icon: Icons.favorite_border,
+      //         text: '---',
+      //       ),
+      //       GButton(
+      //         onPressed: () {
+      //           Navigator.push(context,
+      //               MaterialPageRoute(builder: (context) => ProfilePage()));
+      //         },
+      //         icon: Icons.person,
+      //         text: 'Profile',
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

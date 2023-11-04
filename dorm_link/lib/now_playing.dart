@@ -1,3 +1,4 @@
+import 'package:dorm_link/gnav.dart';
 import 'package:flutter/material.dart';
 
 class now_playing extends StatelessWidget {
@@ -6,6 +7,7 @@ class now_playing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 241, 250, 255),
       body: Column(
         children: [
           Row(
@@ -186,6 +188,7 @@ class now_playing extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: gnav(),
     );
   }
 }

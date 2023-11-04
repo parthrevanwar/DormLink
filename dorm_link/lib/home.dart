@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
         ),
 
         SizedBox(
-          height: 20,
+          height: 10,
         ),
 
         Padding(
@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
         //   textAlign: TextAlign.left,
         // ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
           child: Center(
             child: Container(
               height: 140,
@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
                 children: [
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.only(top: 25.0),
+                      padding: EdgeInsets.only(top: 20.0),
                       child: Text(
                         textAlign: TextAlign.left,
                         "Dinner",
