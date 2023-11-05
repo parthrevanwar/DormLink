@@ -23,6 +23,7 @@ class _complaintsState extends State<complaints> {
     int numOfActiveTickets = resolved.length;
     int numOfResolvedTickets = unresolved.length;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: const Color.fromARGB(255, 241, 250, 255),
         body: SingleChildScrollView(
