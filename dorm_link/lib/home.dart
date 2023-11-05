@@ -51,13 +51,13 @@ class Home extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Hello $name!',
                     style: GoogleFonts.poppins(
-                        fontSize: 25, fontWeight: FontWeight.bold),
+                        fontSize: 24, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -68,11 +68,11 @@ class Home extends StatelessWidget {
               // ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
                 child: Center(
                   child: Container(
                     height: 140,
-                    width: 320,
+                    width: double.infinity,
                     // color: Color.fromARGB(255, 74, 158, 255),
                     decoration: const BoxDecoration(
                       color: Color(0xFF4A9DFF),
@@ -124,44 +124,47 @@ class Home extends StatelessWidget {
                 // ),
               ),
 
-              Container(
-                height: 80,
-                width: 320,
-                // child: Text('Hello'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  height: 80,
+                  width: double.infinity,
+                  // child: Text('Hello'),
 
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                ),
-                child: const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Icon(
-                        Icons.food_bank,
-                        size: 35,
-                      ),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(12),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 15.0),
-                            child: Text(
-                              textAlign: TextAlign.left,
-                              "Dinner",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  child: const Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Icon(
+                          Icons.food_bank,
+                          size: 35,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 15.0),
+                              child: Text(
+                                textAlign: TextAlign.left,
+                                "Dinner",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
                             ),
                           ),
-                        ),
-                        Text('Chhola, Aloooo, Rice, Rasgulla'),
-                      ],
-                    )
-                  ],
+                          Text('Chhola, Aloooo, Rice, Rasgulla'),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

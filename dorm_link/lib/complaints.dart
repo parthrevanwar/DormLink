@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'ticket.dart';
 import 'package:google_fonts/google_fonts.dart';
+import './complaint_card.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import 'profilepage.dart';
 // import 'now_playing.dart';
@@ -19,8 +20,8 @@ class complaints extends StatefulWidget {
 class _complaintsState extends State<complaints> {
   @override
   Widget build(BuildContext context) {
-    int numOfActiveTickets = 2;
-    int numOfResolvedTickets = 3;
+    int numOfActiveTickets = resolved.length;
+    int numOfResolvedTickets = unresolved.length;
     return MaterialApp(
       home: Scaffold(
         backgroundColor: const Color.fromARGB(255, 241, 250, 255),
@@ -46,7 +47,7 @@ class _complaintsState extends State<complaints> {
                   // color: Color(0xFF4A9DFF),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 15.0, top: 13, bottom: 9, right: 15),
+                        left: 20.0, top: 13, bottom: 13, right: 15),
                     child: Text(
                       // style: TextStyle(),
                       'Complaints',
@@ -96,12 +97,7 @@ class _complaintsState extends State<complaints> {
                       ],
                     ),
                   ),
-                  const TicketButton(
-                      heading: "Tubelight is Not working",
-                      description: 'Tubelight is fused. It is not working'),
-                  const TicketButton(
-                      heading: "Tubelight is Not working",
-                      description: 'Tubelight is fused. It is not working'),
+                  ...unresolved,
                 ],
               ),
               Column(
@@ -139,15 +135,7 @@ class _complaintsState extends State<complaints> {
                       ],
                     ),
                   ),
-                  const TicketButton(
-                      heading: "Tubelight is Not working",
-                      description: 'Tubelight is fused. It is not working'),
-                  const TicketButton(
-                      heading: "Tubelight is Not working",
-                      description: 'Tubelight is fused. It is not working'),
-                  const TicketButton(
-                      heading: "Tubelight is Not working",
-                      description: 'Tubelight is fused. It is not working'),
+                  ...resolved,
                 ],
               ),
             ],

@@ -10,27 +10,28 @@ class announcements extends StatelessWidget {
         // const SizedBox(
         //   height: 100,
         // ),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Announcements",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(
-              width: 121,
-            ),
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "See All",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      decoration: TextDecoration.underline),
-                ))
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Announcements",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              Spacer(),
+              TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "See All",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300,
+                        decoration: TextDecoration.underline),
+                  ))
+            ],
+          ),
         ),
         const SizedBox(
           height: 12,

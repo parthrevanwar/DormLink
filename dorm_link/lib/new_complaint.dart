@@ -1,35 +1,15 @@
+import 'package:dorm_link/complaints.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import './complaint_card.dart';
+import './ticket.dart';
+import './complaints.dart';
 
 final nameController = TextEditingController();
 final subjectController = TextEditingController();
 final emailController = TextEditingController();
 final messageController = TextEditingController();
-
-Future sendEmail() async {
-  final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-  const serviceId = "service_k0kuhzk";
-  const templateId = "template_mbji6yj";
-  const userId = "user_Qn6rvqv0TDMmRMR6c";
-
-  final response = await http.post(
-    url,
-    headers: {'Content-Type': 'application/json'},
-    body: json.encode({
-      "service_id": serviceId,
-      "templateId": templateId,
-      "userId": userId,
-      "template_params": {
-        "name": nameController.text,
-        "subject": subjectController.text,
-        "message": messageController.text,
-        "user_email": emailController.text,
-      }
-    }),
-  );
-  return response.statusCode;
-}
 
 class NewComplaint extends StatefulWidget {
   const NewComplaint({super.key});
@@ -40,6 +20,17 @@ class NewComplaint extends StatefulWidget {
 
 class _NewComplaintState extends State<NewComplaint> {
   @override
+  void sendEmail() {
+    unresolved.add(TicketButton(
+        heading: subjectController.text, description: messageController.text));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => complaints(),
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
@@ -64,7 +55,7 @@ class _NewComplaintState extends State<NewComplaint> {
                         ),
                       ),
                       child: const Padding(
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 15),
                         child: Text(
                           'New Complaint',
