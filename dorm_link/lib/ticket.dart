@@ -11,7 +11,7 @@ class TicketButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
       child: Container(
         decoration: const BoxDecoration(
             color: Colors.white,
@@ -50,6 +50,7 @@ class TicketButton extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 16),
                   child: Text(
                     description,
+                    overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.inter(
                         fontSize: 14, fontWeight: FontWeight.w400),
                   ),

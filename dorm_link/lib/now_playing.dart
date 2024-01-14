@@ -22,64 +22,38 @@ class _now_playingState extends State<now_playing> {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 241, 250, 255),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF4A9DFF),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(45),
-                          bottomRight: Radius.circular(45),
-                        ),
-                      ),
+            Padding(
+              padding: const EdgeInsets.only(top: 80, bottom: 36),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFF4A9DFF),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                margin: const EdgeInsets.only(left: 0),
+                // alignment: Alignment.centerLeft,
+                // color: Color(0xFF4A9DFF),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20.0, top: 10, bottom: 10, right: 20),
+                  child: Text(
+                    // style: TextStyle(),
+                    'Now Playing',
+                    style: GoogleFonts.poppins(
+                        height: 0,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFF1FAFF)),
 
-                      width: 250,
-                      margin: EdgeInsets.only(left: 0),
-                      // alignment: Alignment.centerLeft,
-                      // color: Color(0xFF4A9DFF),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 20.0, top: 18, bottom: 18, right: 15),
-                        child: Text(
-                          // style: TextStyle(),
-                          'Now Playing',
-                          style: GoogleFonts.poppins(
-                            height: 1.2,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
+                    textAlign: TextAlign.left,
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: const SizedBox(
-                    width: 55,
-                  ),
-                ),
-                // Expanded(
-                //   flex: 1,
-                //   child: ElevatedButton(
-                //     onPressed: () {},
-                //     child: Icon(Icons.add, color: Colors.white, weight: 500),
-                //     style: ElevatedButton.styleFrom(
-                //       shape: CircleBorder(),
-                //       padding: EdgeInsets.all(20),
-                //       backgroundColor: Colors.blue, // <-- Button color
-                //       foregroundColor: Colors.red, // <-- Splash color
-                //     ),
-                //   ),
-                // )
-              ],
+              ),
             ),
             const SizedBox(height: 10),
             Row(
