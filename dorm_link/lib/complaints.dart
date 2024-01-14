@@ -41,14 +41,12 @@ class _complaintsState extends State<complaints> {
                       bottomRight: Radius.circular(30),
                     ),
                   ),
-
-                  width: 235,
                   margin: const EdgeInsets.only(left: 0),
                   // alignment: Alignment.centerLeft,
                   // color: Color(0xFF4A9DFF),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 20.0, top: 13, bottom: 13, right: 15),
+                        left: 20.0, top: 10, bottom: 10, right: 20),
                     child: Text(
                       // style: TextStyle(),
                       'Complaints',
@@ -63,81 +61,87 @@ class _complaintsState extends State<complaints> {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 18),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 16),
-                          child: Text(
-                            "Ongoing Tickets",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Container(
-                          width: 24,
-                          height: 24,
-                          decoration: const ShapeDecoration(
-                              shape: OvalBorder(), color: Color(0xFFC1DCFB)),
-                          child: Center(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 18),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 16),
                             child: Text(
-                              '$numOfActiveTickets',
-                              style: const TextStyle(
-                                color: Color(0xFF539CF3),
-                                fontSize: 14,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
+                              "Ongoing Tickets",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                           ),
-                        )
-                      ],
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                                shape: OvalBorder(), color: Color(0xFFC1DCFB)),
+                            child: Center(
+                              child: Text(
+                                '$numOfActiveTickets',
+                                style: const TextStyle(
+                                  color: Color(0xFF539CF3),
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  ...unresolved,
-                ],
+                    ...unresolved,
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 18, top: 18),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 16),
-                          child: Text(
-                            "Resolved Tickets",
-                            style: GoogleFonts.poppins(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Container(
-                          width: 24,
-                          height: 24,
-                          decoration: const ShapeDecoration(
-                              shape: OvalBorder(), color: Color(0xFFC1DCFB)),
-                          child: Center(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 18, top: 18),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 0, right: 16),
                             child: Text(
-                              '$numOfResolvedTickets',
-                              style: const TextStyle(
-                                color: Color(0xFF539CF3),
-                                fontSize: 14,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w600,
-                                height: 0,
-                              ),
+                              "Resolved Tickets",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                           ),
-                        )
-                      ],
+                          Container(
+                            width: 24,
+                            height: 24,
+                            decoration: const ShapeDecoration(
+                                shape: OvalBorder(), color: Color(0xFFC1DCFB)),
+                            child: Center(
+                              child: Text(
+                                '$numOfResolvedTickets',
+                                style: const TextStyle(
+                                  color: Color(0xFF539CF3),
+                                  fontSize: 14,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  ...resolved,
-                ],
+                    ...resolved,
+                  ],
+                ),
               ),
             ],
           ),
@@ -145,7 +149,7 @@ class _complaintsState extends State<complaints> {
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               setState(() {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => NewComplaint(),

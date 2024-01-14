@@ -23,12 +23,7 @@ class _NewComplaintState extends State<NewComplaint> {
   void sendEmail() {
     unresolved.add(TicketButton(
         heading: subjectController.text, description: messageController.text));
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => complaints(),
-      ),
-    );
+    Navigator.pop(context);
   }
 
   Widget build(BuildContext context) {

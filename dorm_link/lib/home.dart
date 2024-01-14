@@ -7,7 +7,6 @@ class Home extends StatelessWidget {
   const Home({super.key});
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     final name = "Shashank";
     return Scaffold(
       drawer: Sidebar(),
@@ -15,11 +14,6 @@ class Home extends StatelessWidget {
         titleSpacing: 0,
         backgroundColor: const Color.fromARGB(255, 241, 250, 255),
         centerTitle: true,
-        // toolbarHeight: 100,
-        // title: const Text(
-        //   'BH-1',
-        //   style: TextStyle(),
-        // ),
         actions: const [
           IconButton(
             onPressed: null,
@@ -34,25 +28,21 @@ class Home extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           color: const Color.fromARGB(255, 241, 250, 255),
-          child: Column(
-            children: [
-              // SizedBox(
-              //   height: 10,
-              // ),
-              Center(
-                child: Text(
-                  'BH-1',
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold, fontSize: 30),
+          child: SafeArea(
+            minimum: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    'BH-1',
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold, fontSize: 30),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Container(
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Hello $name!',
@@ -61,17 +51,8 @@ class Home extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                 ),
-              ),
-              // Text(
-              //   'Hello $name',
-              //   textAlign: TextAlign.left,
-              // ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                child: Center(
+                Center(
                   child: Container(
-                    height: 140,
                     width: double.infinity,
                     // color: Color.fromARGB(255, 74, 158, 255),
                     decoration: const BoxDecoration(
@@ -114,23 +95,12 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-                // child: ListView.builder(
-                //   scrollDirection: Axis.horizontal,
-                //   itemCount: 4,
-                //   itemBuilder: (context, index),
-                // ),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
                   height: 80,
                   width: double.infinity,
-                  // child: Text('Hello'),
-
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(
@@ -166,12 +136,12 @@ class Home extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              announcements(),
-            ],
+                SizedBox(
+                  height: 15,
+                ),
+                announcements(),
+              ],
+            ),
           ),
         ),
       ),
