@@ -1,8 +1,8 @@
 import 'package:dorm_link/src/features/homepage/announcement_card.dart';
 import 'package:flutter/material.dart';
 
-class announcements extends StatelessWidget {
-  const announcements({super.key});
+class AnnouncementsBox extends StatelessWidget {
+  const AnnouncementsBox({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class announcements extends StatelessWidget {
               "Announcements",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            Spacer(),
+            const Spacer(),
             TextButton(
                 onPressed: () {},
                 child: const Text(

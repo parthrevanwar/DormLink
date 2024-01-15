@@ -38,7 +38,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
+    HomeScreen(),
     now_playing(),
     Complaints(),
     ProfilePage(),

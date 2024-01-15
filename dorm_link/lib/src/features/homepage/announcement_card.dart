@@ -19,19 +19,20 @@ class AnnouncementCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 16),
             child: Icon(Icons.text_snippet),
           ),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.left,
-                    )),
-                SizedBox(height: 1),
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.left,
+                ),
+                const SizedBox(height: 1),
                 Text(description),
               ],
             ),

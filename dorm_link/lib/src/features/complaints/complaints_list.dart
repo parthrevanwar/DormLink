@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'complaint_card.dart';
 
-const List<Widget> resolved = [
-  ComplaintCard(
+final List<Widget> resolved = [
+  const ComplaintCard(
     heading: "Tubelight not working",
     description: "Tubelight is fused.",
   ),
-  ComplaintCard(
+  const ComplaintCard(
       heading: "Tubelight not working",
       description: "Tubelight is fused."),
 ];
 
-const List<Widget> unresolved = [
-  ComplaintCard(
+final List<Widget> unresolved = [
+  const ComplaintCard(
     heading: "Tubelight not working",
     description: "Tubelight is fused.",
   ),
-  ComplaintCard(heading: "Fan not working", description: "No regulator"),
+  const ComplaintCard(heading: "Fan not working", description: "No regulator"),
 ];

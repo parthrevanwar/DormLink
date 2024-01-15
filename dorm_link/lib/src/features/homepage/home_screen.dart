@@ -10,13 +10,13 @@ Size screenSize = WidgetsBinding.instance.window.physicalSize;
 double w = screenSize.width;
 double h = screenSize.height;
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final name = "Shashank";
+    const name = "Shashank";
     return Scaffold(
-      drawer: Sidebar(),
+      //drawer: Sidebar(),
       appBar: AppBar(
         titleSpacing: 0,
         backgroundColor: const Color.fromARGB(255, 241, 250, 255),
@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                announcements(),
+                AnnouncementsBox(),
               ],
             ),
           ),
