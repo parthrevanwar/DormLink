@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'complaint_card.dart';
 
-import './ticket.dart';
-
-List<Widget> resolved = [
-  TicketButton(
+const List<Widget> resolved = [
+  ComplaintCard(
     heading: "Tubelight not working",
     description: "Tubelight is fused.",
   ),
-  TicketButton(
+  ComplaintCard(
       heading: "Tubelight not working",
       description: "Tubelight is fused."),
 ];
 
-List<Widget> unresolved = [
-  TicketButton(
+const List<Widget> unresolved = [
+  ComplaintCard(
     heading: "Tubelight not working",
     description: "Tubelight is fused.",
   ),
-  TicketButton(heading: "Fan not working", description: "No regulator"),
+  ComplaintCard(heading: "Fan not working", description: "No regulator"),
 ];

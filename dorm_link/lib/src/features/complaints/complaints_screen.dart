@@ -1,23 +1,24 @@
-import 'package:dorm_link/new_complaint.dart';
+import 'package:dorm_link/src/Common_widgets/customappbar.dart';
+import 'package:dorm_link/src/features/complaints/new_complaint.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
-import 'ticket.dart';
+import 'complaint_card.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './complaint_card.dart';
+import 'complaints_list.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import 'profilepage.dart';
-// import 'now_playing.dart';
-// import 'announcements.dart';
+// import 'now_playing_screen.dart';
+// import 'announcements_box.dart';
 // import 'main.dart';
 
-class complaints extends StatefulWidget {
-  const complaints({super.key});
+class Complaints extends StatefulWidget {
+  const Complaints({super.key});
 
   @override
-  State<complaints> createState() => _complaintsState();
+  State<Complaints> createState() => _ComplaintsState();
 }
 
-class _complaintsState extends State<complaints> {
+class _ComplaintsState extends State<Complaints> {
   @override
   Widget build(BuildContext context) {
     int numOfActiveTickets = resolved.length;
@@ -31,36 +32,9 @@ class _complaintsState extends State<complaints> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 80, bottom: 36),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF4A9DFF),
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                  ),
-                  margin: const EdgeInsets.only(left: 0),
-                  // alignment: Alignment.centerLeft,
-                  // color: Color(0xFF4A9DFF),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 20.0, top: 10, bottom: 10, right: 20),
-                    child: Text(
-                      // style: TextStyle(),
-                      'Complaints',
-                      style: GoogleFonts.poppins(
-                          height: 0,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFF1FAFF)),
-
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                ),
-              ),
+              SizedBox(height: 80,),
+              CustomAppBar(title: "Complaints"),
+              SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Column(

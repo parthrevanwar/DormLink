@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TicketButton extends StatelessWidget {
-  const TicketButton(
+class ComplaintCard extends StatelessWidget {
+  const ComplaintCard(
       {required this.heading, required this.description, super.key});
 
   final String heading;
@@ -28,34 +28,36 @@ class TicketButton extends StatelessWidget {
           children: [
             const Padding(
               padding:
-                  EdgeInsets.only(left: 16, top: 16, bottom: 16, right: 12),
+                  EdgeInsets.only(left: 16, top: 16, bottom: 16, right: 16),
               child: Icon(
                 Icons.lightbulb_outline_sharp,
                 size: 40,
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4, top: 16),
-                  child: Text(
-                    heading,
-                    style: GoogleFonts.inter(
-                        fontSize: 18, fontWeight: FontWeight.w500),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4, top: 16),
+                    child: Text(
+                      heading,
+                      style: GoogleFonts.inter(
+                          fontSize: 18, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    description,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.inter(
-                        fontSize: 14, fontWeight: FontWeight.w400),
-                  ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Text(
+                      description,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.inter(
+                          fontSize: 14, fontWeight: FontWeight.w400),
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
