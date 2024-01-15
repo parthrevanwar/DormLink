@@ -1,10 +1,10 @@
-import 'package:dorm_link/complaints.dart';
+import 'package:dorm_link/src/features/complaints/complaints_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import './complaint_card.dart';
-import './ticket.dart';
-import './complaints.dart';
+import 'complaints_list.dart';
+import 'complaint_card.dart';
+import 'complaints_screen.dart';
 
 final nameController = TextEditingController();
 final subjectController = TextEditingController();
@@ -21,7 +21,7 @@ class NewComplaint extends StatefulWidget {
 class _NewComplaintState extends State<NewComplaint> {
   @override
   void sendEmail() {
-    unresolved.add(TicketButton(
+    unresolved.add(ComplaintCard(
         heading: subjectController.text, description: messageController.text));
     Navigator.pop(context);
   }

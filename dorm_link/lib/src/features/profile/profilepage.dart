@@ -1,7 +1,7 @@
+import 'package:dorm_link/src/Common_widgets/customappbar.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import './main.dart';
-import './gnav.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,30 +17,7 @@ class ProfilePage extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4A9DFF),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, top: 10, bottom: 10, right: 20),
-                  child: Text(
-                    // style: TextStyle(),
-                    'Profile',
-                    style: GoogleFonts.poppins(
-                        height: 0,
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFF1FAFF)),
-
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ),
+              CustomAppBar(title: "Profile"),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),

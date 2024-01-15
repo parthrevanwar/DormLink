@@ -1,59 +1,94 @@
-import 'package:dorm_link/currently_playing.dart';
-import 'package:dorm_link/gnav.dart';
-import 'package:dorm_link/picon.dart';
+import 'package:dorm_link/main.dart';
+import 'package:dorm_link/src/features/nowplaying/now_playing_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class now_playing extends StatefulWidget {
-  const now_playing({super.key});
+class Playing extends StatefulWidget {
+  const Playing(
+      {required this.badminton,
+      required this.football,
+      required this.cricket,
+      required this.tt,
+      super.key});
+
+  final int badminton;
+  final int football;
+  final int cricket;
+  final int tt;
 
   @override
-  State<now_playing> createState() => _now_playingState();
+  State<Playing> createState() => _PlayingState();
 }
 
-class _now_playingState extends State<now_playing> {
+class _PlayingState extends State<Playing> {
   @override
   Widget build(BuildContext context) {
-    int numOfPlayersBadminton = 4;
-    int numOfPlayersFootball = 4;
-    int numOfPlayersCricket = 0;
-    int numOfPlayersTT = 4;
+    int b = widget.badminton;
+    int f = widget.football;
+    int c = widget.cricket;
+    int t = widget.tt;
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 241, 250, 255),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 80, bottom: 36),
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4A9DFF),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                margin: const EdgeInsets.only(left: 0),
-                // alignment: Alignment.centerLeft,
-                // color: Color(0xFF4A9DFF),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20.0, top: 10, bottom: 10, right: 20),
-                  child: Text(
-                    // style: TextStyle(),
-                    'Now Playing',
-                    style: GoogleFonts.poppins(
-                        height: 0,
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFF1FAFF)),
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 80),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF4A9DFF),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(45),
+                          bottomRight: Radius.circular(45),
+                        ),
+                      ),
 
-                    textAlign: TextAlign.left,
+                      width: 250,
+                      margin: EdgeInsets.only(left: 0),
+                      // alignment: Alignment.centerLeft,
+                      // color: Color(0xFF4A9DFF),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: 20.0, top: 18, bottom: 18, right: 15),
+                        child: Text(
+                          // style: TextStyle(),
+                          'Now Playing',
+                          style: GoogleFonts.poppins(
+                            height: 1.2,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Expanded(
+                  flex: 1,
+                  child: const SizedBox(
+                    width: 55,
+                  ),
+                ),
+                // Expanded(
+                //   flex: 1,
+                //   child: ElevatedButton(
+                //     onPressed: () {},
+                //     child: Icon(Icons.add, color: Colors.white, weight: 500),
+                //     style: ElevatedButton.styleFrom(
+                //       shape: CircleBorder(),
+                //       padding: EdgeInsets.all(20),
+                //       backgroundColor: Colors.blue, // <-- Button color
+                //       foregroundColor: Colors.red, // <-- Splash color
+                //     ),
+                //   ),
+                // )
+              ],
             ),
             const SizedBox(height: 10),
             Row(
@@ -105,7 +140,7 @@ class _now_playingState extends State<now_playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $numOfPlayersBadminton more'),
+                                child: Text('+ $b more'),
                               ),
                             ],
                           )
@@ -161,7 +196,7 @@ class _now_playingState extends State<now_playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $numOfPlayersFootball more'),
+                                child: Text('+ $f more'),
                               ),
                             ],
                           )
@@ -194,18 +229,18 @@ class _now_playingState extends State<now_playing> {
                           ),
                         ],
                       ),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Cricket',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w600)),
                           ),
-                          Expanded(
+                          const Expanded(
                             child: SizedBox(),
                           ),
                           Row(
@@ -222,7 +257,7 @@ class _now_playingState extends State<now_playing> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     bottom: 18.0, left: 18),
-                                child: Text('None Playing'),
+                                child: Text('$c Playing'),
                               ),
                             ],
                           )
@@ -278,7 +313,7 @@ class _now_playingState extends State<now_playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $numOfPlayersTT more'),
+                                child: Text('+ $t more'),
                               ),
                             ],
                           )
@@ -293,80 +328,8 @@ class _now_playingState extends State<now_playing> {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    scrollable: true,
-                    title: const Center(child: Text("Select Sport")),
-                    content: Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton+1,
-                                      football: numOfPlayersFootball,
-                                      cricket: numOfPlayersCricket,
-                                      tt: numOfPlayersTT),
-                                ),
-                              );
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(),
-                          child: Text("Badminton"),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton,
-                                      football: numOfPlayersFootball+1,
-                                      cricket: numOfPlayersCricket,
-                                      tt: numOfPlayersTT),
-                                ),
-                              );
-                            },
-                            child: Text("Football")),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton,
-                                      football: numOfPlayersFootball,
-                                      cricket: numOfPlayersCricket+1,
-                                      tt: numOfPlayersTT),
-                                ),
-                              );
-                            },
-                            child: Text("Cricket")),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton,
-                                      football: numOfPlayersFootball,
-                                      cricket: numOfPlayersCricket,
-                                      tt: numOfPlayersTT+1),
-                                ),
-                              );
-                            },
-                            child: Text("Table Tennis")),
-                      ],
-                    ),
-                  );
-                },
-              );
+              Navigator.of(context).pop();
             },
-            child: const Icon(Icons.add)));
+            child: const Icon(Icons.done)));
   }
 }

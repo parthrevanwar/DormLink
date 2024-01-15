@@ -1,95 +1,30 @@
-import 'package:dorm_link/main.dart';
-import 'package:dorm_link/now_playing.dart';
+import 'package:dorm_link/src/Common_widgets/customappbar.dart';
+import 'package:dorm_link/src/features/nowplaying/currently_playing.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Playing extends StatefulWidget {
-  const Playing(
-      {required this.badminton,
-      required this.football,
-      required this.cricket,
-      required this.tt,
-      super.key});
-
-  final int badminton;
-  final int football;
-  final int cricket;
-  final int tt;
+class now_playing extends StatefulWidget {
+  const now_playing({super.key});
 
   @override
-  State<Playing> createState() => _PlayingState();
+  State<now_playing> createState() => _now_playingState();
 }
 
-class _PlayingState extends State<Playing> {
+class _now_playingState extends State<now_playing> {
   @override
   Widget build(BuildContext context) {
-    int b = widget.badminton;
-    int f = widget.football;
-    int c = widget.cricket;
-    int t = widget.tt;
+    int numOfPlayersBadminton = 4;
+    int numOfPlayersFootball = 4;
+    int numOfPlayersCricket = 0;
+    int numOfPlayersTT = 4;
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 241, 250, 255),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 80),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF4A9DFF),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(45),
-                          bottomRight: Radius.circular(45),
-                        ),
-                      ),
-
-                      width: 250,
-                      margin: EdgeInsets.only(left: 0),
-                      // alignment: Alignment.centerLeft,
-                      // color: Color(0xFF4A9DFF),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 20.0, top: 18, bottom: 18, right: 15),
-                        child: Text(
-                          // style: TextStyle(),
-                          'Now Playing',
-                          style: GoogleFonts.poppins(
-                            height: 1.2,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: const SizedBox(
-                    width: 55,
-                  ),
-                ),
-                // Expanded(
-                //   flex: 1,
-                //   child: ElevatedButton(
-                //     onPressed: () {},
-                //     child: Icon(Icons.add, color: Colors.white, weight: 500),
-                //     style: ElevatedButton.styleFrom(
-                //       shape: CircleBorder(),
-                //       padding: EdgeInsets.all(20),
-                //       backgroundColor: Colors.blue, // <-- Button color
-                //       foregroundColor: Colors.red, // <-- Splash color
-                //     ),
-                //   ),
-                // )
-              ],
-            ),
+            SizedBox(height: 80,),
+            CustomAppBar(title: "Now Playing"),
             const SizedBox(height: 10),
             Row(
               children: [
@@ -140,7 +75,7 @@ class _PlayingState extends State<Playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $b more'),
+                                child: Text('+ $numOfPlayersBadminton more'),
                               ),
                             ],
                           )
@@ -196,7 +131,7 @@ class _PlayingState extends State<Playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $f more'),
+                                child: Text('+ $numOfPlayersFootball more'),
                               ),
                             ],
                           )
@@ -229,18 +164,18 @@ class _PlayingState extends State<Playing> {
                           ),
                         ],
                       ),
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Cricket',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w600)),
                           ),
-                          const Expanded(
+                          Expanded(
                             child: SizedBox(),
                           ),
                           Row(
@@ -257,7 +192,7 @@ class _PlayingState extends State<Playing> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     bottom: 18.0, left: 18),
-                                child: Text('$c Playing'),
+                                child: Text('None Playing'),
                               ),
                             ],
                           )
@@ -313,7 +248,7 @@ class _PlayingState extends State<Playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $t more'),
+                                child: Text('+ $numOfPlayersTT more'),
                               ),
                             ],
                           )
@@ -328,8 +263,80 @@ class _PlayingState extends State<Playing> {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: const Center(child: Text("Select Sport")),
+                    content: Column(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Playing(
+                                      badminton: numOfPlayersBadminton+1,
+                                      football: numOfPlayersFootball,
+                                      cricket: numOfPlayersCricket,
+                                      tt: numOfPlayersTT),
+                                ),
+                              );
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(),
+                          child: Text("Badminton"),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Playing(
+                                      badminton: numOfPlayersBadminton,
+                                      football: numOfPlayersFootball+1,
+                                      cricket: numOfPlayersCricket,
+                                      tt: numOfPlayersTT),
+                                ),
+                              );
+                            },
+                            child: Text("Football")),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Playing(
+                                      badminton: numOfPlayersBadminton,
+                                      football: numOfPlayersFootball,
+                                      cricket: numOfPlayersCricket+1,
+                                      tt: numOfPlayersTT),
+                                ),
+                              );
+                            },
+                            child: Text("Cricket")),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Playing(
+                                      badminton: numOfPlayersBadminton,
+                                      football: numOfPlayersFootball,
+                                      cricket: numOfPlayersCricket,
+                                      tt: numOfPlayersTT+1),
+                                ),
+                              );
+                            },
+                            child: Text("Table Tennis")),
+                      ],
+                    ),
+                  );
+                },
+              );
             },
-            child: const Icon(Icons.done)));
+            child: const Icon(Icons.add)));
   }
 }
