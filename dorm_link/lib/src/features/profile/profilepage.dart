@@ -114,7 +114,7 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 20,),
              const Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Expanded(
                   child: Row(
                     children: [
@@ -145,7 +145,7 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 20,),
               const Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
                 child: Expanded(
                   child: Row(
                     children: [
