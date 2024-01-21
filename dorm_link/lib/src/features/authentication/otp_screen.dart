@@ -1,3 +1,4 @@
+import 'package:dorm_link/main.dart';
 import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -43,7 +44,9 @@ class OtpScreen extends StatelessWidget {
               filled: true,
             ),
             const SizedBox(height: 20,),
-            CustomBigButton(press: (){}, title: "Continue")
+            CustomBigButton(press: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+            }, title: "Continue")
           ],
         ),
       ),

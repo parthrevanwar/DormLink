@@ -1,10 +1,13 @@
 import 'package:dorm_link/src/Common_widgets/customappbar.dart';
+import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:dorm_link/src/Common_widgets/customtextfield.dart';
 import 'package:dorm_link/src/features/authentication/forgotpassword_screen.dart';
 import 'package:dorm_link/src/features/authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
+
+import '../../../main.dart';
 /*
 this is the screen responsible for handling of the login actvity
 
@@ -89,25 +92,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       const SizedBox(height: 10,),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 70,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF4A9DFF),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                          ),
-                          child: const Text('Continue',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400)),
-                        ),
-                      ),
+                      CustomBigButton(press: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+                      }, title: "Conitnue"),
                       const SizedBox(height: 10),
                       Text(
                         'or continue with',

@@ -1,7 +1,9 @@
+import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
+import '../../../main.dart';
 import '../../Common_widgets/customappbar.dart';
 import '../../Common_widgets/customtextfield.dart';
 import 'login_screen.dart';
@@ -61,25 +63,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                           controller: passwordController, hintText: "Password"),
                       const SizedBox(height: 20),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 70,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF4A9DFF),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                          ),
-                          child: const Text('Continue',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400)),
-                        ),
-                      ),
+                      CustomBigButton(press: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+                      }, title: "Continue"),
                       const SizedBox(height: 10),
                       Text(
                         'or continue with',
