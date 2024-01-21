@@ -1,8 +1,8 @@
+import 'package:dorm_link/src/features/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:dorm_link/src/features/nowplaying/now_playing_screen.dart';
 import 'src/features/complaints/complaints_screen.dart';
-import 'src/features/auth/login.dart';
 import 'src/features/homepage/home_screen.dart';
 import 'src/features/profile/profilepage.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 217, 233, 253)),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
