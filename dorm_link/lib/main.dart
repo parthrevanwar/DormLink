@@ -1,12 +1,19 @@
+import 'package:dorm_link/src/features/auth/login.dart';
 import 'package:dorm_link/src/features/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:dorm_link/src/features/nowplaying/now_playing_screen.dart';
+import 'firebase_options.dart';
 import 'src/features/complaints/complaints_screen.dart';
 import 'src/features/homepage/home_screen.dart';
 import 'src/features/profile/profilepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'src/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -17,12 +24,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 217, 233, 253)),
-        useMaterial3: true,
-      ),
-      home: LoginScreen(),
+      theme: AppTheme.theme,
+      home: StreamBuilder<User?>(stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot){
+          if(snapshot.hasData) {
+            return const HomeScreen();
+          }
+          else{
+            return LoginPage();
+          }
+        },),
       debugShowCheckedModeBanner: false,
     );
   }

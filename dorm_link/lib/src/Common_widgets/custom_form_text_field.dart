@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {super.key, required this.controller, required this.hintText, this.isPassword=false});
+class CustomTextFormField extends StatelessWidget {
+  CustomTextFormField(
+      {super.key,
+      required this.validator,
+      required this.hintText,
+      required this.enteredValue,
+      this.isPassword=false});
 
-  final TextEditingController controller;
+  final String? Function(String?)? validator;
   final String hintText;
-  bool isPassword=false;
+  late String enteredValue;
+  bool isPassword;
+
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
+    return TextFormField(
       obscureText: isPassword,
-      cursorColor: Color(0xFF4A9DFF),
       style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+      validator: validator,
+      onSaved: (value) {
+        enteredValue = value!;
+        //print(enteredValue);
+      },
+      cursorColor: Color(0xFF4A9DFF),
       decoration: InputDecoration(
           hintText: hintText,
           fillColor: Colors.white,
@@ -25,8 +35,8 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey.shade400,
+            borderSide: const BorderSide(
+              color: Color(0xFF4A9DFF),
               width: 1,
             ),
             borderRadius: BorderRadius.circular(15),
@@ -36,7 +46,7 @@ class CustomTextField extends StatelessWidget {
               color: Colors.red,
               width: 2,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(10),
           )),
     );
   }

@@ -44,7 +44,7 @@ class OtpScreen extends StatelessWidget {
               filled: true,
             ),
             const SizedBox(height: 20,),
-            CustomBigButton(press: (){
+            CustomBigButton(onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
             }, title: "Continue")
           ],

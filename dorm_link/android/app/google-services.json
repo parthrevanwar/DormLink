@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "310622873925",
+    "project_id": "dorm-link",
+    "storage_bucket": "dorm-link.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310622873925:android:3e72b2cf2929a05a63f62c",
+        "android_client_info": {
+          "package_name": "com.example.dorm_link"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310622873925-4hr1en7rv4s15is33c23ofhvgss2kgu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5L8rPmtQn_A4oaj5j43ERkrzCJ4U-aQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310622873925-4hr1en7rv4s15is33c23ofhvgss2kgu1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "310622873925-4648ga96in7f1tm7rc1per50u8d9e4ok.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dormLink"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

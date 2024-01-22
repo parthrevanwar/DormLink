@@ -44,7 +44,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomBigButton(press: () {
+                CustomBigButton(onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpScreen()));
                 }, title: "Continue"),
               ],

@@ -38,14 +38,11 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: const EdgeInsets.fromLTRB(0, 80, 0, 0),
-            child: Row(
-              children: [
-                CustomAppBar(title: "Sign In"),
-              ],
-            ),
+            padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
+            child: CustomAppBar(title: "Sign In"),
           ),
           const SizedBox(
             height: 20,
@@ -92,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       const SizedBox(height: 10,),
-                      CustomBigButton(press: (){
+                      CustomBigButton(onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
                       }, title: "Conitnue"),
                       const SizedBox(height: 10),

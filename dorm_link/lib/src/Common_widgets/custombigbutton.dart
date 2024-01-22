@@ -1,29 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomBigButton extends StatelessWidget {
-  const CustomBigButton({super.key, required this.press, required this.title});
-  final VoidCallback press;
+  const CustomBigButton({super.key, required this.onTap, required this.title});
+
+  final VoidCallback onTap;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
-      height: 70,
+      height: 60,
+      decoration: const BoxDecoration(boxShadow: [
+        BoxShadow(
+          color: Color.fromARGB(14, 18, 18, 18),
+          spreadRadius: 2,
+          blurRadius: 10,
+          offset: Offset(0, 0), // changes position of shadow
+        ),
+      ]),
       child: ElevatedButton(
-        onPressed: press,
+        onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color(0xFF4A9DFF),
+          shadowColor: const Color(0x13121212),
+          elevation: 2,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           shape: const RoundedRectangleBorder(
-            borderRadius:
-            BorderRadius.all(Radius.circular(20)),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
         ),
         child: Text(title,
-            style: const TextStyle(
+            style: GoogleFonts.inter(
                 fontSize: 20,
                 color: Colors.white,
-                fontWeight: FontWeight.w400)),
+                fontWeight: FontWeight.w500)),
       ),
     );
   }
