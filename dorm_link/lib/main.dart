@@ -11,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'src/theme.dart';
 
+final firebase = FirebaseAuth.instance;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -25,10 +27,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: AppTheme.theme,
-      home: StreamBuilder<User?>(stream: FirebaseAuth.instance.authStateChanges(),
+      home: StreamBuilder<User?>(stream: firebase.authStateChanges(),
         builder: (context, snapshot){
           if(snapshot.hasData) {
-            return const HomeScreen();
+            return const MyHomePage();
           }
           else{
             return LoginPage();

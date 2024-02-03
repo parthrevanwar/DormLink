@@ -17,8 +17,8 @@ class ProfilePage extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CustomAppBar(title: "Profile"),
-              Spacer(),
+              const CustomAppBar(title: "Profile"),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: IconButton(
@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                child: const Row(
+                child: Row(
                   children: [
                     Expanded(
                       child: Column(
@@ -77,6 +77,7 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
+                                    color: Theme.of(context).colorScheme.onBackground
                                 )),
                           ),
                           Center(
@@ -84,6 +85,7 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
+                                    color: Theme.of(context).colorScheme.onBackground
                                 )),
                           ),
                         ],
@@ -97,6 +99,7 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
+                                    color: Theme.of(context).colorScheme.onBackground
                                 )),
                           ),
                           Center(
@@ -104,6 +107,7 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
+                                    color: Theme.of(context).colorScheme.onBackground
                                 )),
                           ),
                         ],
@@ -113,65 +117,65 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20,),
-             const Padding(
-                padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Expanded(
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Caretaker',
+             Padding(
+                padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Caretaker',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                              color: Theme.of(context).colorScheme.onBackground
+                          ),
+                        ),
+                        Text('Mr Ram Prakash',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               fontSize: 16,
-                            ),
-                          ),
-                          Text('Mr Ram Prakash',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              )),
-                        ],
-                      ),
-                      Spacer(),
-                      Center(child: Icon(Icons.call)),
-                    ],
-                  ),
+                                color: Theme.of(context).colorScheme.onBackground
+                            )),
+                      ],
+                    ),
+                    const Spacer(),
+                    const Center(child: Icon(Icons.call)),
+                  ],
                 ),
               ),
               const SizedBox(height: 20,),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
-                child: Expanded(
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Warden',
+              Padding(
+                padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Warden',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                              color: Theme.of(context).colorScheme.onBackground
+                          ),
+                        ),
+                        Text('Dr. Bhupendra Jogi',
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               fontSize: 16,
-                            ),
-                          ),
-                          Text('Dr. Bhupendra Jogi',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              )),
-                        ],
-                      ),
-                      Spacer(),
-                      Center(child: Icon(Icons.call)),
-                    ],
-                  ),
+                                color: Theme.of(context).colorScheme.onBackground
+                            )),
+                      ],
+                    ),
+                    Spacer(),
+                    Center(child: Icon(Icons.call)),
+                  ],
                 ),
               ),
             ],

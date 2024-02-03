@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     'BH-1',
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold, fontSize: 30),
+                        fontWeight: FontWeight.bold, fontSize: 30, color: Theme.of(context).colorScheme.onBackground),
                   ),
                 ),
                 SizedBox(
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     'Hello $name!',
                     style: GoogleFonts.poppins(
-                        fontSize: 24, fontWeight: FontWeight.bold),
+                        fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground),
                     textAlign: TextAlign.left,
                   ),
                 ),

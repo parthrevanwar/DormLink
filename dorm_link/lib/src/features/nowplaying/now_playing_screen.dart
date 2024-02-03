@@ -52,12 +52,12 @@ class _now_playingState extends State<now_playing> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 19.0, top: 14),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Badminton',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600)),
+                                    fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)),
                           ),
                           Expanded(
                             child: SizedBox(),
@@ -75,7 +75,7 @@ class _now_playingState extends State<now_playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $numOfPlayersBadminton more'),
+                                child: Text('+ $numOfPlayersBadminton more', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -108,12 +108,12 @@ class _now_playingState extends State<now_playing> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 19.0, top: 14),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Football',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600)),
+                                    fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)),
                           ),
                           Expanded(
                             child: SizedBox(),
@@ -131,7 +131,7 @@ class _now_playingState extends State<now_playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $numOfPlayersFootball more'),
+                                child: Text('+ $numOfPlayersFootball more', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -164,18 +164,18 @@ class _now_playingState extends State<now_playing> {
                           ),
                         ],
                       ),
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 19.0, top: 14),
+                            padding: const EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Cricket',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600)),
+                                    fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)),
                           ),
-                          Expanded(
+                          const Expanded(
                             child: SizedBox(),
                           ),
                           Row(
@@ -192,7 +192,7 @@ class _now_playingState extends State<now_playing> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     bottom: 18.0, left: 18),
-                                child: Text('None Playing'),
+                                child: Text('None Playing', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -225,12 +225,12 @@ class _now_playingState extends State<now_playing> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Table Tennis',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600)),
+                                    fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)),
                           ),
                           Expanded(
                             child: SizedBox(),
@@ -248,7 +248,7 @@ class _now_playingState extends State<now_playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $numOfPlayersTT more'),
+                                child: Text('+ $numOfPlayersTT more', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -287,7 +287,7 @@ class _now_playingState extends State<now_playing> {
                             });
                           },
                           style: ElevatedButton.styleFrom(),
-                          child: Text("Badminton"),
+                          child: Text("Badminton", style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                         ),
                         ElevatedButton(
                             onPressed: () {
@@ -302,7 +302,7 @@ class _now_playingState extends State<now_playing> {
                                 ),
                               );
                             },
-                            child: Text("Football")),
+                            child: Text("Football", style: TextStyle(color: Theme.of(context).colorScheme.onBackground),)),
                         ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -316,7 +316,7 @@ class _now_playingState extends State<now_playing> {
                                 ),
                               );
                             },
-                            child: Text("Cricket")),
+                            child: Text("Cricket", style: TextStyle(color: Theme.of(context).colorScheme.onBackground),)),
                         ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -330,7 +330,7 @@ class _now_playingState extends State<now_playing> {
                                 ),
                               );
                             },
-                            child: Text("Table Tennis")),
+                            child: Text("Table Tennis", style: TextStyle(color: Theme.of(context).colorScheme.onBackground),)),
                       ],
                     ),
                   );

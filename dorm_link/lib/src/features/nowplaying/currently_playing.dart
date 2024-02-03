@@ -117,12 +117,12 @@ class _PlayingState extends State<Playing> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 19.0, top: 14),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 19.0, top: 14),
                             child: Text('Badminton',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600)),
+                                    fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground)),
                           ),
                           Expanded(
                             child: SizedBox(),
@@ -140,7 +140,7 @@ class _PlayingState extends State<Playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $b more'),
+                                child: Text('+ $b more', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -196,7 +196,7 @@ class _PlayingState extends State<Playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $f more'),
+                                child: Text('+ $f more', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -257,7 +257,7 @@ class _PlayingState extends State<Playing> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     bottom: 18.0, left: 18),
-                                child: Text('$c Playing'),
+                                child: Text('$c Playing', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )
@@ -313,7 +313,7 @@ class _PlayingState extends State<Playing> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 14.0),
-                                child: Text('+ $t more'),
+                                child: Text('+ $t more', style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
                               ),
                             ],
                           )

@@ -11,6 +11,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dorm_link/src/Common_widgets/customtextfield.dart';
 
+
+final firebase = FirebaseAuth.instance;
+
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
@@ -27,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   // sign user in method
   Future signInWithEmail() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await firebase.signInWithEmailAndPassword(
           email: usernameController.text.trim(),
           password: passwordController.text.trim());
       const SnackBar(content: Text("Successfully signed in as"));

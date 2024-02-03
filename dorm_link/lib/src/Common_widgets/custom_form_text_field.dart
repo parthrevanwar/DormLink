@@ -4,16 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField(
       {super.key,
+      required this.onSave,
       required this.validator,
       required this.hintText,
       required this.enteredValue,
-      this.isPassword=false});
+      this.isPassword = false});
 
   final String? Function(String?)? validator;
+  final String? Function(String?)? onSave;
   final String hintText;
   late String enteredValue;
   bool isPassword;
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +22,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: isPassword,
       style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
       validator: validator,
-      onSaved: (value) {
-        enteredValue = value!;
-        //print(enteredValue);
-      },
+      onSaved: onSave,
       cursorColor: Color(0xFF4A9DFF),
       decoration: InputDecoration(
           hintText: hintText,

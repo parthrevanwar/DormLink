@@ -12,9 +12,9 @@ class MenuBox extends StatelessWidget {
           Radius.circular(12),
         ),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Icon(
               Icons.food_bank,
@@ -31,10 +31,11 @@ class MenuBox extends StatelessWidget {
                     textAlign: TextAlign.left,
                     "Dinner",
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
+                        fontWeight: FontWeight.bold, fontSize: 18, color: Theme.of(context).colorScheme.onBackground),
                   ),
                   Text(
                     'Chhola, Aloooo, Roti, Rasgulla',
+                    style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
                     softWrap: true,
                   ),
                 ],

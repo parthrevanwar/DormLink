@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "310622873925-kkbrggkq6s8k9g818arct3dk7sqba658.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dorm_link",
+            "certificate_hash": "fcf6367d5b972e7a89d929bb8eefcb8178b2c924"
+          }
+        },
+        {
           "client_id": "310622873925-4hr1en7rv4s15is33c23ofhvgss2kgu1.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'sign_up_failure.dart';
 
+final firebase = FirebaseAuth.instance;
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -26,8 +28,9 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
+        print(_enteredEmail);
 
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await firebase.createUserWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword);
 
         //Navigator.pop(context);
@@ -91,48 +94,65 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // username textfield
                 CustomTextFormField(
-                    validator: (value) {
-                      if (value == null || value.length <= 1) {
-                        return "Name must not be empty";
-                      }
-                      return null;
-                    },
-                    hintText: "Name",
-                    enteredValue: _enteredName),
+                  validator: (value) {
+                    if (value == null || value.length <= 1) {
+                      return "Name must not be empty";
+                    }
+                    return null;
+                  },
+                  hintText: "Name",
+                  enteredValue: _enteredName,
+                  onSave: (value) {
+                    _enteredName = value!;
+                  },
+                ),
 
                 const SizedBox(height: 8),
 
                 CustomTextFormField(
-                    validator: (value) {
-                      if (value == null || value.length <= 1) {
-                        return "Enter a valid email";
-                      }
-                      return null;
-                    },
-                    hintText: "Email ID",
-                    enteredValue: _enteredEmail),
+                  validator: (value) {
+                    if (value == null || value.length <= 1) {
+                      return "Enter a valid email";
+                    }
+                    return null;
+                  },
+                  hintText: "Email ID",
+                  enteredValue: _enteredEmail,
+                  onSave: (value) {
+                    _enteredEmail = value!;
+                  },
+                ),
 
                 const SizedBox(height: 8),
                 CustomTextFormField(
-                    validator: (value) {
-                      if (value == null || value.length != 10) {
-                        return "Enrollment No. is not valid";
-                      }
-                      return null;
-                    },
-                    hintText: "Enrollment No.",
-                    enteredValue: _enteredEnrollmentNum),
+                  validator: (value) {
+                    if (value == null || value.length != 10) {
+                      return "Enrollment No. is not valid";
+                    }
+                    return null;
+                  },
+                  hintText: "Enrollment No.",
+                  enteredValue: _enteredEnrollmentNum,
+                  onSave: (value) {
+                    _enteredEnrollmentNum = value!;
+                  },
+                ),
 
                 const SizedBox(height: 8),
                 CustomTextFormField(
-                    validator: (value) {
-                      if (value == null || value.length < 8) {
-                        return "Password should be of atleast 8 characters";
-                      }
-                      return null;
-                    },
-                    hintText: "Password",
-                    enteredValue: _enteredPassword, isPassword: true,),
+                  validator: (value) {
+                    if (value == null || value.length < 8) {
+                      return "Password should be of atleast 8 characters";
+                    }
+                    return null;
+                  },
+                  hintText: "Password",
+                  enteredValue: _enteredPassword,
+                  isPassword: true,
+                  onSave: (value) {
+                    _enteredPassword = value!;
+                  },
+                ),
 
                 const SizedBox(height: 8),
 

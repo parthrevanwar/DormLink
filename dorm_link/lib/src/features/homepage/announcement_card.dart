@@ -29,11 +29,11 @@ class AnnouncementCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground),
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 1),
-                Text(description),
+                Text(description, style: TextStyle(color: Theme.of(context).colorScheme.onBackground),),
               ],
             ),
           ),

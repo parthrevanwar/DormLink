@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,15 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCJVPFBo6BgzLFGtLQ3YSY_37zFbf0JOo4',
-    appId: '1:310622873925:web:5547405b5c9f656063f62c',
-    messagingSenderId: '310622873925',
-    projectId: 'dorm-link',
-    authDomain: 'dorm-link.firebaseapp.com',
-    storageBucket: 'dorm-link.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB5L8rPmtQn_A4oaj5j43ERkrzCJ4U-aQw',
     appId: '1:310622873925:android:3e72b2cf2929a05a63f62c',
@@ -69,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '310622873925',
     projectId: 'dorm-link',
     storageBucket: 'dorm-link.appspot.com',
+    androidClientId: '310622873925-kkbrggkq6s8k9g818arct3dk7sqba658.apps.googleusercontent.com',
     iosClientId: '310622873925-4648ga96in7f1tm7rc1per50u8d9e4ok.apps.googleusercontent.com',
     iosBundleId: 'com.example.dormLink',
   );
