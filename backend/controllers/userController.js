@@ -1,5 +1,6 @@
 import e from "express";
 import bcryptjs from 'bcryptjs'
+import User from '../models/userModel.js'
 
 
 export const test = (req,res)=>{

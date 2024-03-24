@@ -9,7 +9,8 @@ export const verifyToken = (req,res,next) => {
     }
 
     jwt.verify(token,"eoggy776g7",(err,user) => {
-        if(err) return next(403, "Forbidden");
+        if(err) return next(403, "Forbidden (Error in verifying user by jwt)");
+        
         req.user = user;
         next();
 
