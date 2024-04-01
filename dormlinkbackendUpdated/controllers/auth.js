@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
   try {
     const { enrollmentNo, password } = req.body;
     // Find the user by enrollment number
-    const user = await User.findOne({ enrollmentNo });
+    const user = await User.findOne({ enrollmentNo: enrollmentNo });
     if (!user) {
       return res.status(400).send('Invalid enrollment number or password');
     }
@@ -69,6 +69,7 @@ const loginUser = async (req, res) => {
     const tokenPayload = {
       userId: user._id,
       enrollmentNo: user.enrollmentNo,
+      name: user.name,
       hostel: hostelInfo.hostel,
       isAdmin: hostelInfo.isAdmin
     };
@@ -77,6 +78,7 @@ const loginUser = async (req, res) => {
     res.send({ 
       enrollmentNo: user.enrollmentNo, 
       hostel: hostelInfo.hostel, 
+      name:user.name,
       isAdmin: hostelInfo.isAdmin, 
       token 
     });

@@ -25,8 +25,8 @@ app.use('/auth', authRoutes); //done
 app.use('/',authenticateToken, protectedRoute);//testing only no use of this route 
 app.use('/users',authenticateToken, usersRoutes);//done
 app.use('/announcements',authenticateToken, announcementRoutes); //done 
-app.use('/sports',authenticateToken, sportRoutes);
-app.use('/messmenu',authenticateToken, messMenuRoutes);
+app.use('/sports',authenticateToken, sportRoutes); //done
+app.use('/messmenu',authenticateToken, messMenuRoutes);//done
 
 
 // Start the server
