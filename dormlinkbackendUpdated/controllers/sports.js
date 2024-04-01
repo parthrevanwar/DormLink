@@ -5,8 +5,8 @@ const Sport = require('../models/Sports');
 // Add a new sport
 exports.addSport = async (req, res) => {
   try {
-    const { name, numberOfPlayers } = req.body;
-    const sport = new Sport({ name, numberOfPlayers, players: [] });
+    const { sportname, numberOfPlayers } = req.body;
+    const sport = new Sport({ sportname, numberOfPlayers, players: [] });
     await sport.save();
     res.status(201).json(sport);
   } catch (error) {
@@ -18,7 +18,8 @@ exports.addSport = async (req, res) => {
 // Add a player to a sport
 exports.addPlayerToSport = async (req, res) => {
     try {
-      const { enrollmentNo, name, sportName } = req.body;
+      const sportname=req.params.sportname;
+      const { enrollmentNo, name} = req.body;
   
       // Check if the player is already playing a sport
       const existingSport = await Sport.findOne({ 'players.enrollmentNo': enrollmentNo });
@@ -26,7 +27,7 @@ exports.addPlayerToSport = async (req, res) => {
         return res.status(400).send('Player is already playing another sport');
       }
   
-      const sport = await Sport.findOne({ name: sportName });
+      const sport = await Sport.findOne({ sportname: sportname });
       if (!sport) {
         return res.status(404).send('Sport not found');
       }
@@ -45,7 +46,8 @@ exports.addPlayerToSport = async (req, res) => {
 // Get all players currently playing for a specific sport
 exports.getPlayersInSport = async (req, res) => {
   try {
-    const sport = await Sport.findOne({ name: req.params.sportName });
+    const sportname=req.params.sportname;
+    const sport = await Sport.findOne({ sportname: sportname });
     if (!sport) {
       return res.status(404).send('Sport not found');
     }
@@ -60,8 +62,9 @@ exports.getPlayersInSport = async (req, res) => {
 // Remove oneself from a sport
 exports.removePlayerFromSport = async (req, res) => {
     try {
-      const { enrollmentNo, sportName } = req.body;
-      const sport = await Sport.findOne({ name: sportName });
+      const sportname=req.params.sportname;
+      const { enrollmentNo, name} = req.body;
+      const sport = await Sport.findOne({ sportname: sportname });
       if (!sport) {
         return res.status(404).send('Sport not found');
       }

@@ -3,17 +3,18 @@
 const express = require('express');
 const router = express.Router();
 const sportController = require('../controllers/sports');
+const checkadmin=require('../middleware/checkadmin');
 
 // Add a new sport
-router.post('/add', sportController.addSport);
+router.post('/add',checkadmin, sportController.addSport);
 
 // Add a player to a sport
-router.post('/addPlayer', sportController.addPlayerToSport);
+router.post('/addPlayer/:sportname', sportController.addPlayerToSport);
 
 // Get all players currently playing for a specific sport
-router.get('/playing/:sportName', sportController.getPlayersInSport);
+router.get('/playing/:sportname', sportController.getPlayersInSport);
 
 // Remove oneself from a sport
-router.delete('/removePlayer/:sportName', sportController.removePlayerFromSport);
+router.delete('/removePlayer/:sportname', sportController.removePlayerFromSport);
 
 module.exports = router;

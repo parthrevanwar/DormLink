@@ -5,7 +5,8 @@ const MessMenu = require('../models/MessMenu');
 // Get menu by day and hostel
 const getMenuByDayAndHostel = async (req, res) => {
   try {
-    const { day, hostel } = req.params;
+    const { day } = req.params;
+    const {hostel}= req.body;
     const menu = await MessMenu.findOne({ day, hostels: hostel });
     if (!menu) {
       return res.status(404).send('Menu not found for this day and hostel');
