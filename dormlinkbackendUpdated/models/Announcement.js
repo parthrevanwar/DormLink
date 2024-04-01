@@ -14,7 +14,11 @@ const announcementSchema = new mongoose.Schema({
   createdBy: {
     type: String,
     required: true
-  }
+  },
+  hostels: [{
+    type: String,
+    required: true
+  }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Announcement', announcementSchema);
