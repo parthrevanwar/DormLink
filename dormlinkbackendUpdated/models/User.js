@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     unique: false,
   },
   enrollmentNo: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },

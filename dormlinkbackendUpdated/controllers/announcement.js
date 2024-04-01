@@ -1,13 +1,29 @@
 // controllers/announcementController.js
 
 const Announcement = require('../models/Announcement');
+const User = require('../models/User');
 
 // Create Announcement
 exports.createAnnouncement = async (req, res) => {
   try {
-    const { title, content, createdBy } = req.body;
-    const announcement = new Announcement({ title, content, createdBy });
+    const { title, content,enrollmentNo, hostels } = req.body;
+    const userobj = await User.findOne({enrollmentNo : enrollmentNo});
+    console.log(enrollmentNo);
+    if (!userobj) {
+      return res.status(400).send('user not found');
+    }
+    // Ensure hostels is an array
+    if (!Array.isArray(hostels)) {
+      return res.status(400).send('Hostels should be an array');
+    }
+    console.log(userobj);
+    const createdBy=userobj.name;
+    // Create new announcement
+    const announcement = new Announcement({ title, content, createdBy , hostels });
+    
+    // Save announcement to the database
     await announcement.save();
+
     res.status(201).json(announcement);
   } catch (error) {
     console.error(error);
@@ -15,10 +31,16 @@ exports.createAnnouncement = async (req, res) => {
   }
 };
 
-// Get All Announcements
+// Get All Announcements of users hostel
 exports.getAllAnnouncements = async (req, res) => {
   try {
-    const announcements = await Announcement.find().populate('createdBy', 'name email');
+    const { hostel } = req.body;
+
+    if (!hostel) {
+      return res.status(400).send('Hostel parameter is missing in the request body');
+    }
+
+    const announcements = await Announcement.find({ hostels:hostel }).populate('createdBy', 'name email');
     res.json(announcements);
   } catch (error) {
     console.error(error);
