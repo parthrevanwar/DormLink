@@ -9,16 +9,19 @@ const announcementRoutes = require('./routes/announcement');
 const sportRoutes = require('./routes/sports');
 const authenticateToken = require('./middleware/authenticate');
 const messMenuRoutes=require('./routes/messmenu');
+const connectDB = require('./config/db.js');
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 
+connectDB();
+
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/dormlink')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Error connecting to MongoDB:', err));
+// mongoose.connect('mongodb://127.0.0.1:27017/dormlink')
+//   .then(() => console.log('Connected to MongoDB'))
+//   .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Routes
 app.use('/auth', authRoutes); //done
