@@ -27,5 +27,6 @@ const ticketSchema=new mongoose.Schema({
         type:Number,
         default:0
     }
-});
-export default mongoose.model('ticket',ticketSchema);
+},)
+
+module.export = mongoose.model('ticket',ticketSchema)

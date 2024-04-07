@@ -9,6 +9,7 @@ const announcementRoutes = require('./routes/announcement');
 const sportRoutes = require('./routes/sports');
 const authenticateToken = require('./middleware/authenticate');
 const messMenuRoutes=require('./routes/messmenu');
+const attendanceRoutes=require('./routes/messattendence.js');
 
 const ticketsRoute=require('./routes/tickets');
 const connectDB = require('./config/db.js');
@@ -33,8 +34,9 @@ app.use('/users',authenticateToken, usersRoutes);//done
 app.use('/announcements',authenticateToken, announcementRoutes); //done 
 app.use('/sports',authenticateToken, sportRoutes); //done
 app.use('/messmenu',authenticateToken, messMenuRoutes);//done
-app.use('/messmenu',authenticateToken, messMenuRoutes);//done
+// app.use('/messmenu',authenticateToken, messMenuRoutes);//done
 app.use('/tickets',authenticateToken, ticketsRoute);//done
+app.use('/attendance',authenticateToken, attendanceRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
