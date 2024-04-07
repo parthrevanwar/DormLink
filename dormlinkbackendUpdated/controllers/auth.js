@@ -73,7 +73,9 @@ const loginUser = async (req, res) => {
       hostel: hostelInfo.hostel,
       isAdmin: hostelInfo.isAdmin
     };
-    const token = jwt.sign(tokenPayload, 'your-secret-key');
+
+    const expiresIn = 3600000000;
+    const token = jwt.sign(tokenPayload, 'your-secret-key', {expiresIn});
     // Return enrollment number, hostel, isAdmin status, and token
     res.send({ 
       enrollmentNo: user.enrollmentNo, 
