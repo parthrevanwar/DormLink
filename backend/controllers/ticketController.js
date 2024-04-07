@@ -6,6 +6,7 @@ import ticketModel  from "../models/ticketModel.js";
 export const createTicketController = async (req, res) => {
     try {
         const {name,title,description,roomNo} = req.fields;
+        const {enrollmentNo} =req.body;
         //validation
         
         if (!name)
@@ -18,6 +19,7 @@ export const createTicketController = async (req, res) => {
             return res.status(500).send({error:"Room No is required"});    
       
         const newTicket = await new ticketModel({
+            enrollmentNo,
             name,
             title,
             description,
@@ -49,46 +51,101 @@ export const createTicketController = async (req, res) => {
 
 
 export const getOpenTicketController=async (req,res)=>{
-    try {
-       
-        
-        const orderA= await ticketModel.find({status:0}).limit(15);
-        
-        res.status(200).send({
-            success:true,  
-            message:"All Open Tickets",
-            orderA
-        });
-    } catch (error) {
-        console.log(error);
-        res.send(500).send({
-            success:false,
-            message:'Error in getting Orders',
-            error:error.message
-        })
+    const {isAdmin,enrollmentNo} =req.body;
+    if(isAdmin){
+        try {
+            const orderA= await ticketModel.find({status:0}).limit(15);
+            
+            res.status(200).send({
+                success:true,  
+                message:"All Open Tickets",
+                orderA
+            });
+        } catch (error) {
+            console.log(error);
+            res.send(500).send({
+                success:false,
+                message:'Error in getting Orders',
+                error:error.message
+            })
+        }
+    }else{
+        try {
+            const orderA= await ticketModel.find({status:0 ,enrollmentNo}).limit(15);
+            
+            res.status(200).send({
+                success:true,  
+                message:"All Open Tickets",
+                orderA
+            });
+        } catch (error) {
+            console.log(error);
+            res.send(500).send({
+                success:false,
+                message:'Error in getting Orders',
+                error:error.message
+            })
+        }
     }
+    
 };
 
 
 export const getClosedTicketController=async (req,res)=>{
-    try {
-        // const oid=req.params.oid;
-        
-        const orderA= await ticketModel.find({status:1}).limit(15);
-        
-        res.status(200).send({
-            success:true,  
-            message:"All CLosed Tickets",
-            orderA
-        });
-    } catch (error) {
-        console.log(error);
-        res.send(500).send({
-            success:false,
-            message:'Error in getting Orders',
-            error:error.message
-        })
+    const {isAdmin,enrollmentNo} =req.body;
+    if(isAdmin){
+        try {
+            const orderA= await ticketModel.find({status:1}).limit(15);
+            
+            res.status(200).send({
+                success:true,  
+                message:"All Closed Tickets",
+                orderA
+            });
+        } catch (error) {
+            console.log(error);
+            res.send(500).send({
+                success:false,
+                message:'Error in getting Orders',
+                error:error.message
+            })
+        }
+    }else{
+        try {
+            const orderA= await ticketModel.find({status:1 ,enrollmentNo}).limit(15);
+            
+            res.status(200).send({
+                success:true,  
+                message:"All Closed Tickets",
+                orderA
+            });
+        } catch (error) {
+            console.log(error);
+            res.send(500).send({
+                success:false,
+                message:'Error in getting Orders',
+                error:error.message
+            })
+        }
     }
+    // try {
+    //     // const oid=req.params.oid;
+        
+    //     const orderA= await ticketModel.find({status:1}).limit(15);
+        
+    //     res.status(200).send({
+    //         success:true,  
+    //         message:"All CLosed Tickets",
+    //         orderA
+    //     });
+    // } catch (error) {
+    //     console.log(error);
+    //     res.send(500).send({
+    //         success:false,
+    //         message:'Error in getting Orders',
+    //         error:error.message
+    //     })
+    // }
 };
 
 // export const getOneOrderController=async (req,res)=>{
@@ -132,7 +189,7 @@ export const deleteTicketController= async (req,res)=>{
 
 export const updateTicketController=async(req,res)=>{
     try {
-        const {name,title,description,roomNo,status} = req.fields;
+        const {name,title,description,roomNo} = req.fields;
         const id=req.params.pid;
         
         
@@ -155,7 +212,7 @@ export const updateTicketController=async(req,res)=>{
         //     })
         // }
         const newTicket = await ticketModel.findByIdAndUpdate(id,{
-            name,title,description,roomNo,status
+            name,title,description,roomNo
         },{new:true});
         
         await newTicket.save();
@@ -171,6 +228,42 @@ export const updateTicketController=async(req,res)=>{
             success: false,
             error,
             message: "Error in Updation"
+        });
+    }
+
+};
+export const updateTicketStatusController=async(req,res)=>{
+    try {
+        const {status} = req.fields;
+        const id=req.params.pid;
+        
+        
+        
+        //const existingProduct = await new productModel.findOne({ name });
+
+        // if (existingProduct) {
+        //     return res.status(200).send({
+        //         success: true,
+        //         message: "Category Already Exists"
+        //     })
+        // }
+        const newTicket = await ticketModel.findByIdAndUpdate(id,{
+            status
+        },{new:true});
+        
+        await newTicket.save();
+        res.status(201).send({
+            success:true,
+            message:'status Updated',
+            newTicket
+        })
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            error,
+            message: "Error in Status Updation"
         });
     }
 

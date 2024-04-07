@@ -9,6 +9,7 @@ const announcementRoutes = require('./routes/announcement');
 const sportRoutes = require('./routes/sports');
 const authenticateToken = require('./middleware/authenticate');
 const messMenuRoutes=require('./routes/messmenu');
+const ticketsRoute=require('./routes/tickets');
 
 const app = express();
 
@@ -22,12 +23,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/dormlink')
 
 // Routes
 app.use('/auth', authRoutes); //done
-app.use('/',authenticateToken, protectedRoute);//testing only no use of this route 
+// app.use('/',authenticateToken, protectedRoute);//testing only no use of this route 
 app.use('/users',authenticateToken, usersRoutes);//done
 app.use('/announcements',authenticateToken, announcementRoutes); //done 
 app.use('/sports',authenticateToken, sportRoutes); //done
 app.use('/messmenu',authenticateToken, messMenuRoutes);//done
-
+app.use('/messmenu',authenticateToken, messMenuRoutes);//done
+app.use('/tickets',authenticateToken, ticketsRoute);//done
 
 // Start the server
 const PORT = process.env.PORT || 3000;
