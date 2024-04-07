@@ -1,5 +1,6 @@
 const WashingMachine = require('../models/WashingMachine');
 
+
 exports.getAllMachines = async (req, res) => {
     try {
       const machines = await WashingMachine.find();
@@ -51,3 +52,42 @@ exports.bookMachineSlot = async (req, res) => {
       res.status(500).json({ message: err.message });
     }
   };
+
+  exports.addNewMachine = async (req,res) => {
+
+    try{
+    const {machineNumber , location, floor } = req.fields;
+
+    if (!machineNumber)
+            return res.status(500).send({error:"Machine number is required"});
+    if (!location)
+        return res.status(500).send({error:"location is required"});
+    if( !floor)
+        return res.status(500).send({error:"Floor is required"});
+
+
+    const newMachine = await new WashingMachine({
+      machineNumber,
+      location,
+      floor
+    });
+
+    await WashingMachine.save();
+
+    res.status(201).send({
+      success:true,
+      message:'Machine Added',
+      newMachine
+  })
+  }
+  catch (error) {
+    console.log(error);
+    res.status(500).send({
+        success: false,
+        error,
+        message: "Error in Machine Creation"
+    });
+}
+        
+      
+}; 

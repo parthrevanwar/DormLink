@@ -9,4 +9,6 @@ router.post('/:machineId/book', washingMachineController.bookMachineSlot);
 
 router.get('/:machineId/slots', washingMachineController.getMachineSlotsStatus);
 
+router.post('/add-washing-machine', washingMachineController.addNewMachine);
+
 module.exports = router;
