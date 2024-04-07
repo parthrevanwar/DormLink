@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const ticketSchema=new mongoose.Schema({
+    enrollmentNo:{
+        type:String,
+        required:true
+    },
     name:{
         type:String,
         required:true
