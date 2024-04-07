@@ -1,49 +1,56 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dorm_link/src/features/homepage/menu_card.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-class MenuBox extends StatelessWidget {
-  const MenuBox({super.key});
+class MenuBox extends StatefulWidget {
+  MenuBox({super.key});
+
+  @override
+  State<MenuBox> createState() => _MenuBoxState();
+}
+
+class _MenuBoxState extends State<MenuBox> {
+  int currentIndex=0;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(12),
-        ),
-      ),
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Icon(
-              Icons.food_bank,
-              size: 40,
-            ),
+    return Column(
+      children: [
+        CarouselSlider(
+          options: CarouselOptions(
+            aspectRatio: 4,
+            viewportFraction: 1,
+            initialPage: 2,
+            enableInfiniteScroll: false,
+            onPageChanged: (index, reason) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
           ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    textAlign: TextAlign.left,
-                    "Dinner",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18, color: Theme.of(context).colorScheme.onBackground),
-                  ),
-                  Text(
-                    'Chhola, Aloooo, Roti, Rasgulla',
-                    style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
-                    softWrap: true,
-                  ),
-                ],
-              ),
+          items: const [
+            MenuCard(
+              title: "Breakfast",
+              description: "Poha",
+            ),MenuCard(
+              title: "Lunch",
+              description: "aalu",
+            ),MenuCard(
+              title: "Dinner",
+              description: "roti",
             ),
-          )
-        ],
-      ),
+          ],
+        ),
+        DotsIndicator(
+          decorator: const DotsDecorator(
+            color: Color.fromARGB(255, 174, 182, 210),
+            activeColor: Color(0xFF4A9DFF),
+          ),
+          dotsCount: 3,
+          position: currentIndex,
+        ),
+      ],
     );
   }
 }

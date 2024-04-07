@@ -4,7 +4,7 @@ const ticketModel = require('../models/Tickets.js')
 
 
 
-export const createTicketController = async (req, res) => {
+exports.createTicketController = async (req, res) => {
     try {
         const {name,title,description,roomNo} = req.fields;
         const {enrollmentNo} =req.body;
@@ -51,7 +51,7 @@ export const createTicketController = async (req, res) => {
 };
 
 
-export const getOpenTicketController=async (req,res)=>{
+exports.getOpenTicketController=async (req,res)=>{
     const {isAdmin,enrollmentNo} =req.body;
     if(isAdmin){
         try {
@@ -92,7 +92,7 @@ export const getOpenTicketController=async (req,res)=>{
 };
 
 
-export const getClosedTicketController=async (req,res)=>{
+exports.getClosedTicketController=async (req,res)=>{
     const {isAdmin,enrollmentNo} =req.body;
     if(isAdmin){
         try {
@@ -170,7 +170,7 @@ export const getClosedTicketController=async (req,res)=>{
 // };
 
 
-export const deleteTicketController= async (req,res)=>{
+exports.deleteTicketController= async (req,res)=>{
     try {
         const ticketV=await ticketModel.findByIdAndDelete(req.params.pid);
         res.status(200).send({
@@ -188,7 +188,7 @@ export const deleteTicketController= async (req,res)=>{
 };
 
 
-export const updateTicketController=async(req,res)=>{
+exports.updateTicketController=async(req,res)=>{
     try {
         const {name,title,description,roomNo} = req.fields;
         const id=req.params.pid;
@@ -233,7 +233,7 @@ export const updateTicketController=async(req,res)=>{
     }
 
 };
-export const updateTicketStatusController=async(req,res)=>{
+exports.updateTicketStatusController=async(req,res)=>{
     try {
         const {status} = req.fields;
         const id=req.params.pid;

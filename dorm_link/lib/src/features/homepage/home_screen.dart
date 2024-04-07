@@ -1,5 +1,6 @@
 import 'package:dorm_link/src/features/homepage/menu_box.dart';
 import 'package:dorm_link/src/features/homepage/user_box.dart';
+import 'package:dorm_link/src/features/homepage/washingmachine.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'announcements_box.dart';
@@ -62,10 +63,9 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
+                WashingMachinCard(),
+                const SizedBox(height: 10,),
                 MenuBox(),
-                SizedBox(
-                  height: 15,
-                ),
                 AnnouncementsBox(),
               ],
             ),

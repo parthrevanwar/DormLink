@@ -17,4 +17,4 @@ router.get('/get-cl-ticket',getClosedTicketController);
 router.get('/delete-ticket/:pid',deleteTicketController);
 router.get('/update-ticket-status/:id' , updateTicketStatusController);
 
-export default router;
+module.exports = router;
