@@ -6,6 +6,7 @@ const ticketModel = require('../models/Tickets.js')
 
 exports.createTicketController = async (req, res) => {
     try {
+        console.log(req.body)
         const {name,title,description,roomNo} = req.body;
         const {enrollmentNo} =req.body;
         //validation
@@ -19,7 +20,7 @@ exports.createTicketController = async (req, res) => {
         if (!roomNo)
             return res.status(500).send({error:"Room No is required"});    
       
-        const newTicket = await new ticketModel({
+        const newTicket = new ticketModel({
             enrollmentNo,
             name,
             title,
