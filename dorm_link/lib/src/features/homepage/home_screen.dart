@@ -1,23 +1,41 @@
 import 'package:dorm_link/src/features/homepage/menu_box.dart';
-import 'package:dorm_link/src/features/homepage/user_box.dart';
 import 'package:dorm_link/src/features/homepage/washingmachine.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'announcements_box.dart';
-import '../sidemenu/sidebar.dart';
 
 
-Size screenSize = WidgetsBinding.instance.window.physicalSize;
-double w = screenSize.width;
-double h = screenSize.height;
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key, this.token});
+
+  final token;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var name = ' ';
+
+    Future<void> _loadName() async {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      setState(() {
+        name = preferences.getString("name") ?? '';
+      });
+    }
+
+    @override
+  void initState() {
+    _loadName();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    const name = "Shashank";
     return Scaffold(
       //drawer: Sidebar(),
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         titleSpacing: 0,
         backgroundColor: const Color.fromARGB(255, 241, 250, 255),
@@ -59,12 +77,12 @@ class HomeScreen extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                 ),
-                UserBox(),
+                //UserBox(),
                 const SizedBox(
-                  height: 20,
+                  height: 12,
                 ),
-                WashingMachinCard(),
-                const SizedBox(height: 10,),
+                WashingMachineCard(),
+                const SizedBox(height: 24,),
                 MenuBox(),
                 AnnouncementsBox(),
               ],

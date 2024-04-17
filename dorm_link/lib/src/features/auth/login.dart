@@ -1,18 +1,15 @@
+import 'dart:convert';
 import 'package:dorm_link/main.dart';
 import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:dorm_link/src/features/auth/register.dart';
-import 'package:dorm_link/src/features/authentication/signup_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:dorm_link/src/features/auth/my_button.dart';
-import 'package:dorm_link/src/features/auth/my_textfield.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:dorm_link/src/Common_widgets/customtextfield.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
-final firebase = FirebaseAuth.instance;
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -24,36 +21,66 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // text editing controllers
   final usernameController = TextEditingController();
-
   final passwordController = TextEditingController();
 
+
+  late SharedPreferences preferences;
+  final _client = http.Client();
+  final _loginUrl = Uri.parse("$baseUrl/auth/login");
+  final _registerUrl = Uri.parse("register");
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initSharedPreference();
+  }
+
+  void initSharedPreference() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
   // sign user in method
-  Future signInWithEmail() async {
-    try {
-      await firebase.signInWithEmailAndPassword(
-          email: usernameController.text.trim(),
-          password: passwordController.text.trim());
-      const SnackBar(content: Text("Successfully signed in as"));
-    } on FirebaseAuthException catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              icon: Icon(Icons.error_outline),
-              iconColor: Colors.redAccent,
-              title: Text(
-                "Wrong Password",
-                style: GoogleFonts.urbanist(color: Colors.redAccent),
-              ),
-            );
-          });
+  void logInWithEmail() async {
+    http.Response response = await _client.post(_loginUrl,
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: json.encode({
+          "enrollmentNo": usernameController.text.trim(),
+          "password": passwordController.text.trim()
+        }));
+    print(response.statusCode.toString());
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      //await EasyLoading.showSuccess(json["status"]);
+      var myToken = json["token"];
+      var myName = json["name"];
+      var myHostel = json["hostel"];
+      print(json);
+      preferences.setString("name", myName);
+      preferences.setString("token", myToken);
+      preferences.setString("hostel", myHostel);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Welcome $myName !", style: TextStyle(color: Colors.white),)));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (ctx) =>
+              MyHomePage(
+                token: myToken,
+              )));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(response.body, style: TextStyle(color: Colors.white),)));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme
+          .of(context)
+          .colorScheme
+          .background,
       body: SingleChildScrollView(
         child: SafeArea(
           minimum: const EdgeInsets.symmetric(horizontal: 20),
@@ -72,7 +99,10 @@ class _LoginPageState extends State<LoginPage> {
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w700,
                     fontSize: 60,
-                    color: Theme.of(context).colorScheme.onBackground),
+                    color: Theme
+                        .of(context)
+                        .colorScheme
+                        .onBackground),
               ),
 
               const SizedBox(height: 40),
@@ -91,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
               // username textfield
               CustomTextField(
                 controller: usernameController,
-                hintText: 'Email ID',
+                hintText: 'Enrollment No.',
               ),
 
               const SizedBox(height: 10),
@@ -120,8 +150,8 @@ class _LoginPageState extends State<LoginPage> {
 
               // sign in button
               CustomBigButton(
-                onTap: signInWithEmail,
-                title : "Log In",
+                onTap: logInWithEmail,
+                title: "Log In",
               ),
 
               const SizedBox(height: 50),

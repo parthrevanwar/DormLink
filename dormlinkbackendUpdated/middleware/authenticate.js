@@ -22,7 +22,7 @@ const authenticateToken = (req, res, next) => {
     if (err) return res.status(403).send('Invalid token.');
 
     // Extract enrollment number and isAdmin from the decoded token payload
-    const { userId, enrollmentNo,name, hostel, isAdmin } = decoded;
+    const { userId, enrollmentNo,name, hostel, isAdmin,roomNo } = decoded;
 
     // Add enrollment number and isAdmin to the request body
     req.userId = userId;
@@ -30,6 +30,7 @@ const authenticateToken = (req, res, next) => {
     req.body.hostel = hostel;
     req.body.isAdmin = isAdmin;
     req.body.name= name;
+    req.body.roomNo=roomNo;
     next();
   });
 };

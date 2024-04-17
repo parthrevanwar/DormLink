@@ -51,17 +51,20 @@ const loginUser = async (req, res) => {
     // Find the user by enrollment number
     const user = await User.findOne({ enrollmentNo: enrollmentNo });
     if (!user) {
+      console.log("Invalid enrollment number or password")
       return res.status(400).send('Invalid enrollment number or password');
     }
     // Compare passwords
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
+      console.log("Invalid enrollment number or password")
       return res.status(400).send('Invalid enrollment number or password');
     }
     // Query hostel_info collection to get hostel and isAdmin status
     const hostelInfo = await HostelInfo.findOne({ enrollmentNo: enrollmentNo });
     if (!hostelInfo) {
       console.log(hostelInfo);
+      console.log("Invalid enrollment number123")
       return res.status(400).send('Invalid enrollment number123');
     }
     console.log(hostelInfo);
@@ -71,7 +74,8 @@ const loginUser = async (req, res) => {
       enrollmentNo: user.enrollmentNo,
       name: user.name,
       hostel: hostelInfo.hostel,
-      isAdmin: hostelInfo.isAdmin
+      isAdmin: hostelInfo.isAdmin,
+      roomNo: hostelInfo.roomNo
     };
 
     const expiresIn = 3600000000;
@@ -82,6 +86,7 @@ const loginUser = async (req, res) => {
       hostel: hostelInfo.hostel, 
       name:user.name,
       isAdmin: hostelInfo.isAdmin, 
+      roomNo: hostelInfo.roomNo,
       token 
     });
   } catch (error) {
