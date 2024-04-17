@@ -1,14 +1,14 @@
+import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:dorm_link/src/features/complaints/complaints_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'complaints_list.dart';
 import 'complaint_card.dart';
-import 'complaints_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dorm_link/src/features/auth/register.dart';
 
-final nameController = TextEditingController();
 final subjectController = TextEditingController();
-final emailController = TextEditingController();
 final messageController = TextEditingController();
 
 class NewComplaint extends StatefulWidget {
@@ -19,10 +19,33 @@ class NewComplaint extends StatefulWidget {
 }
 
 class _NewComplaintState extends State<NewComplaint> {
+  final _client = http.Client();
+
   @override
-  void sendEmail() {
+  void sendEmail() async {
     unresolved.add(ComplaintCard(
         heading: subjectController.text, description: messageController.text));
+    var token = '';
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      token = preferences.getString("token") ?? '';
+    });
+    final messUrl = Uri.parse("$baseUrl/tickets/create-ticket");
+    http.Response response = await _client.post(
+      messUrl,
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'authorization': token
+      },
+      body: jsonEncode({
+        'title' : subjectController.text,
+        'description' : messageController.text
+      })
+    );
+    print(response.statusCode);
+    var json = jsonDecode(response.body);
+    print(json);
     Navigator.pop(context);
   }
 
@@ -75,29 +98,8 @@ class _NewComplaintState extends State<NewComplaint> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: nameController,
-                      decoration: InputDecoration(
-                        icon: const Icon(Icons.account_circle),
-                        hintText: 'Name',
-                        labelText: 'Name',
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    TextFormField(
+                      style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
                       controller: subjectController,
-                      decoration: const InputDecoration(
-                        icon: const Icon(Icons.email),
-                        hintText: 'Roll No',
-                        labelText: 'Roll No',
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    TextFormField(
-                      controller: emailController,
                       decoration: InputDecoration(
                         icon: const Icon(Icons.subject_rounded),
                         hintText: 'Subject',
@@ -108,6 +110,7 @@ class _NewComplaintState extends State<NewComplaint> {
                       height: 25,
                     ),
                     TextFormField(
+                      style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
                       controller: messageController,
                       decoration: InputDecoration(
                         icon: const Icon(Icons.message),
@@ -118,9 +121,9 @@ class _NewComplaintState extends State<NewComplaint> {
                     SizedBox(
                       height: 25,
                     ),
-                    ElevatedButton(
-                      onPressed: sendEmail,
-                      child: Text('Send'),
+                    CustomBigButton(
+                      onTap: sendEmail,
+                      title: "Send",
                     ),
                   ],
                 ),

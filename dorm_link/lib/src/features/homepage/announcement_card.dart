@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnnouncementCard extends StatelessWidget {
   const AnnouncementCard({super.key, required this.title, required this.description});
@@ -29,7 +30,7 @@ class AnnouncementCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground),
+                  style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground),
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 1),

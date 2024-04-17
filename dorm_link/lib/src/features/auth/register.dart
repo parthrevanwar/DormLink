@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:dorm_link/main.dart';
 import 'package:dorm_link/src/Common_widgets/custom_form_text_field.dart';
 import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
@@ -5,9 +6,12 @@ import 'package:dorm_link/src/features/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'sign_up_failure.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 final firebase = FirebaseAuth.instance;
+
+final baseUrl = "http://192.168.7.179:3000";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -24,31 +28,55 @@ class _RegisterPageState extends State<RegisterPage> {
   String _enteredEnrollmentNum = "";
   String _enteredPassword = "";
 
-  Future registerUser() async {
-    try {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save();
-        print(_enteredEmail);
+  final _client = http.Client();
+  final _registerUrl = Uri.parse('${baseUrl}/auth/register');
+  late SharedPreferences preferences;
 
-        await firebase.createUserWithEmailAndPassword(
-            email: _enteredEmail, password: _enteredPassword);
+  void registerUser() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
 
-        //Navigator.pop(context);
+      http.Response response = await _client.post(_registerUrl,
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: json.encode({
+            "name": _enteredName.trim(),
+            "enrollmentNo": _enteredEnrollmentNum,
+            "email": _enteredEmail.trim(),
+            "password": _enteredPassword.trim()
+          }));
+      print(response);
+      if (response.statusCode == 200) {
+        var json = jsonDecode(response.body);
+        if (json["status"] == "emailId in use") {
+          // await EasyLoading.showError(json["status"]);
+        } else {
+          var myToken = json["token"];
+          print(json["token"]);
+          preferences.setString("token", myToken);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+            "Registration Successful! Please login to continue",
+            style: TextStyle(color: Colors.white),
+          )));
+          //EasyLoading.showSuccess(json["status"]);
+          // Navigator.of(context).pushReplacement(MaterialPageRoute(
+          //     builder: (ctx) => MyHomePage(
+          //       token: myToken,
+          //     )));
+          //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => HomePage(token: )));
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+          response.body,
+          style: TextStyle(color: Colors.white),
+        )));
+        // await EasyLoading.showError(
+        //     "Error Code : ${response.statusCode.toString()}");
       }
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              icon: Icon(Icons.error_outline),
-              iconColor: Colors.redAccent,
-              title: Text(
-                SignupWithEmailAndPasswordFailure.code(e.code).message,
-                style: GoogleFonts.poppins(color: Colors.redAccent),
-              ),
-            );
-          });
     }
   }
 

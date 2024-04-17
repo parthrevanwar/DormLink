@@ -21,7 +21,7 @@ const ticketSchema=new mongoose.Schema({
     },
     roomNo:{
         type:String,
-        required:true
+        
     },
     status:{
         type:Number,

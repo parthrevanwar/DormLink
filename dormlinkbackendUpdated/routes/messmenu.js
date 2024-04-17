@@ -9,7 +9,7 @@ const checkadmin=require('../middleware/checkadmin');
 router.get('/:day', messMenuController.getMenuByDayAndHostel);
 
 // Add a new menu entry
-router.post('/add',checkadmin, messMenuController.addMenuEntry);
+router.post('/add', messMenuController.addMenuEntry);
 
 // Update menu entry by day and hostel
 router.put('/:day/:hostel',checkadmin, messMenuController.updateMenuEntry);

@@ -6,7 +6,7 @@ const announcementController = require('../controllers/announcement');
 const checkadmin=require('../middleware/checkadmin');
 
 // Create Announcement
-router.post('/',checkadmin, announcementController.createAnnouncement);
+router.post('/', announcementController.createAnnouncement);
 
 // Get All Announcements
 router.get('/', announcementController.getAllAnnouncements);

@@ -6,7 +6,7 @@ const ticketModel = require('../models/Tickets.js')
 
 exports.createTicketController = async (req, res) => {
     try {
-        const {name,title,description,roomNo} = req.fields;
+        const {name,title,description,roomNo} = req.body;
         const {enrollmentNo} =req.body;
         //validation
         

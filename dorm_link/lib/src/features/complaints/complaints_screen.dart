@@ -21,8 +21,8 @@ class Complaints extends StatefulWidget {
 class _ComplaintsState extends State<Complaints> {
   @override
   Widget build(BuildContext context) {
-    int numOfActiveTickets = resolved.length;
-    int numOfResolvedTickets = unresolved.length;
+    int numOfActiveTickets = unresolved.length;
+    int numOfResolvedTickets = resolved.length;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

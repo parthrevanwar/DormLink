@@ -1,48 +1,48 @@
 import 'package:dorm_link/src/features/auth/login.dart';
-import 'package:dorm_link/src/features/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:dorm_link/src/features/nowplaying/now_playing_screen.dart';
-import 'firebase_options.dart';
 import 'src/features/complaints/complaints_screen.dart';
 import 'src/features/homepage/home_screen.dart';
 import 'src/features/profile/profilepage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'src/theme.dart';
-
-final firebase = FirebaseAuth.instance;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  runApp(
+      ProviderScope(
+        child: MyApp(
+          token: preferences.getString("token"),
+        ),
+      ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.token});
+
+  final token;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: AppTheme.theme,
-      home: StreamBuilder<User?>(stream: firebase.authStateChanges(),
-        builder: (context, snapshot){
-          if(snapshot.hasData) {
-            return const MyHomePage();
-          }
-          else{
-            return LoginPage();
-          }
-        },),
-      debugShowCheckedModeBanner: false,
-    );
+        title: 'Dorm Link',
+        theme: AppTheme.theme,
+        debugShowCheckedModeBanner: false,
+         home: token != null  ? (JwtDecoder.isExpired(token) ? LoginPage() :
+        MyHomePage(token: token,)
+    )
+           : LoginPage());
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({super.key, required this.token});
+
+  final token;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,15 +50,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     now_playing(),
     Complaints(),
     ProfilePage(),
   ];
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 250, 255),
       body: Center(child: _widgetOptions.elementAt(selectedIndex)),
