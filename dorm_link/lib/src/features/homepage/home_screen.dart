@@ -1,16 +1,17 @@
 import 'package:dorm_link/src/features/homepage/menu_box.dart';
+import 'package:dorm_link/src/features/homepage/mess_attendance.dart';
+import 'package:dorm_link/src/features/homepage/qr_code_page.dart';
+import 'package:dorm_link/src/features/homepage/quick_actions.dart';
 import 'package:dorm_link/src/features/homepage/washingmachine.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'announcements_box.dart';
 
-
-
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, this.token});
+  const HomeScreen({super.key, required this.token});
 
-  final token;
+  final String token;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,18 +20,19 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var name = ' ';
 
-    Future<void> _loadName() async {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      setState(() {
-        name = preferences.getString("name") ?? '';
-      });
-    }
+  Future<void> _loadName() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      name = preferences.getString("name") ?? '';
+    });
+  }
 
-    @override
+  @override
   void initState() {
     _loadName();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,25 +57,30 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           color: const Color.fromARGB(255, 241, 250, 255),
           child: SafeArea(
-            minimum: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            // minimum: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Column(
               children: [
                 Center(
                   child: Text(
                     'BH-1',
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold, fontSize: 30, color: Theme.of(context).colorScheme.onBackground),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        color: Theme.of(context).colorScheme.onBackground),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
+                  margin: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'Hello $name!',
                     style: GoogleFonts.poppins(
-                        fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onBackground),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onBackground),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -81,10 +88,49 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 12,
                 ),
-                WashingMachineCard(),
-                const SizedBox(height: 24,),
-                MenuBox(),
-                AnnouncementsBox(),
+                //WashingMachineCard(),
+                //const SizedBox(height: 24,),
+                MenuBox(
+                  token: widget.token,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    children: [
+                      QuickActionsTile(
+                        icon: Icons.qr_code,
+                        text: "View QR Code",
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => QRCodePage()));
+                        },
+                      ),
+                      const Spacer(),
+                      QuickActionsTile(
+                        icon: Icons.menu_book_outlined,
+                        text: "View full Menu",
+                        onTap: () {},
+                      ),
+                      const Spacer(),
+                      QuickActionsTile(
+                        icon: Icons.co_present_outlined,
+                        text: "View Mess Attendance",
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => MessAttendance(token: widget.token,)));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 12),
+                  child: AnnouncementsBox(widget.token),
+                ),
               ],
             ),
           ),

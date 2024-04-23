@@ -6,7 +6,8 @@ const ticketModel = require('../models/Tickets.js')
 
 exports.createTicketController = async (req, res) => {
     try {
-        const {name,title,description,roomNo} = req.body;
+        console.log(req.body)
+        const {name,title,description,roomNo,category} = req.body;
         const {enrollmentNo} =req.body;
         //validation
         
@@ -19,11 +20,12 @@ exports.createTicketController = async (req, res) => {
         if (!roomNo)
             return res.status(500).send({error:"Room No is required"});    
       
-        const newTicket = await new ticketModel({
+        const newTicket = new ticketModel({
             enrollmentNo,
             name,
             title,
             description,
+            category,
             roomNo
         });
         
@@ -190,19 +192,20 @@ exports.deleteTicketController= async (req,res)=>{
 
 exports.updateTicketController=async(req,res)=>{
     try {
-        const {name,title,description,roomNo} = req.fields;
+        const {title,description,roomNo,category} = req.body;
         const id=req.params.pid;
         
         
         //validation
-        if (!name)
-        return res.status(500).send({error:"Name is required"});
+
     if (!title)
         return res.status(500).send({error:"Title is required"});
     if( !description)
         return res.status(500).send({error:"Description is required"});
     if (!roomNo)
         return res.status(500).send({error:"Room No is required"});    
+    if (!category)
+        return res.status(500).send({error:"Category is required"});
         
         //const existingProduct = await new productModel.findOne({ name });
 
@@ -213,7 +216,7 @@ exports.updateTicketController=async(req,res)=>{
         //     })
         // }
         const newTicket = await ticketModel.findByIdAndUpdate(id,{
-            name,title,description,roomNo
+            title,description,roomNo,category
         },{new:true});
         
         await newTicket.save();
@@ -235,7 +238,7 @@ exports.updateTicketController=async(req,res)=>{
 };
 exports.updateTicketStatusController=async(req,res)=>{
     try {
-        const {status} = req.fields;
+        const {status} = req.body;
         const id=req.params.pid;
         
         
@@ -250,7 +253,7 @@ exports.updateTicketStatusController=async(req,res)=>{
         // }
         const newTicket = await ticketModel.findByIdAndUpdate(id,{
             status
-        },{new:true});
+        });
         
         await newTicket.save();
         res.status(201).send({

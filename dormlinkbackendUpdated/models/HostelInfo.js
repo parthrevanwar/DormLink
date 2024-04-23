@@ -7,7 +7,8 @@ const Schema = mongoose.Schema;
 const hostelInfoSchema = new Schema({
   enrollmentNo: { type: String, required: true, unique: true },
   hostel: { type: String, required: true },
-  isAdmin: { type: Boolean, default: false }
+  isAdmin: { type: Boolean, default: false },
+  roomNo:{type:String,required:true,}
 });
 
 // Create a model for hostel information

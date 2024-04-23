@@ -1,55 +1,35 @@
 import 'package:dorm_link/src/features/homepage/announcement_card.dart';
+import 'package:dorm_link/src/provider/announcement_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dorm_link/src/features/auth/register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AnnouncementsBox extends StatefulWidget {
-  const AnnouncementsBox({super.key});
+class AnnouncementsBox extends ConsumerStatefulWidget {
+  const AnnouncementsBox(this.token, {super.key});
+
+  final String token;
 
   @override
-  State<AnnouncementsBox> createState() => _AnnouncementsBoxState();
+  ConsumerState<AnnouncementsBox> createState() => _AnnouncementsBoxState();
 }
 
-class _AnnouncementsBoxState extends State<AnnouncementsBox> {
-
-  final _client = http.Client();
-  int noOfAnnouncements = 0;
-  List<String> _titles = [];
-  List<String> _contents = [];
+class _AnnouncementsBoxState extends ConsumerState<AnnouncementsBox> {
+  late Future<void> _announcementsFuture;
 
   @override
   void initState() {
-   _getAnnouncements();
+    _announcementsFuture = ref
+        .read(announcementsProvider.notifier)
+        .fetchAnnouncements(widget.token);
     super.initState();
   }
 
-  void _getAnnouncements() async {
-    var token = '';
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      token = preferences.getString("token") ?? '';
-    });
-    final announcementUrl = Uri.parse("$baseUrl/announcements");
-    http.Response response = await _client.get(
-      announcementUrl,
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-        'authorization': token
-      },
-    );
-    var json = jsonDecode(response.body);
-    noOfAnnouncements = json.length;
-    for(int i=0; i<noOfAnnouncements; ++i){
-      print(json[i]["title"]);
-      _titles.add(json[i]["title"]);
-      _contents.add(json[i]["content"]);
-    }
-  }
   @override
   Widget build(BuildContext context) {
+    final _myAnnouncements = ref.watch(announcementsProvider);
     return Column(
       children: [
         Row(
@@ -58,7 +38,10 @@ class _AnnouncementsBoxState extends State<AnnouncementsBox> {
           children: [
             Text(
               "Announcements",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.onBackground),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onBackground),
             ),
             const Spacer(),
             TextButton(
@@ -72,32 +55,28 @@ class _AnnouncementsBoxState extends State<AnnouncementsBox> {
                 ))
           ],
         ),
-        const SizedBox(
-          height: 10,
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white),
+          child: FutureBuilder(
+              future: _announcementsFuture,
+              builder: (context, snapshot) =>
+                  snapshot.connectionState == ConnectionState.waiting
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: _myAnnouncements.length,
+                          itemBuilder: (context, index) {
+                            return AnnouncementCard(
+                              title: _myAnnouncements[index][0],
+                              createdBy: _myAnnouncements[index][1],
+                              date: _myAnnouncements[index][2],
+                            );
+                          },
+                        )),
         ),
-        StreamBuilder(
-          stream: null,
-          builder: (context, snapshot) {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: noOfAnnouncements,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: (){},
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                    child:AnnouncementCard(
-                      title: _titles[index],
-                      description: _contents[index],
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
-
       ],
     );
   }

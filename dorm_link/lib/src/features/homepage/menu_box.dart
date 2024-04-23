@@ -10,20 +10,19 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuBox extends StatefulWidget {
-  MenuBox({super.key});
+  const MenuBox({super.key, required this.token});
+
+  final String token;
 
   @override
   State<MenuBox> createState() => _MenuBoxState();
 }
 
 class _MenuBoxState extends State<MenuBox> {
-
-  final _client = http.Client();
-
   int currentIndex = 0;
-  String breakfastMenu = "";
-  String lunchMenu = "";
-  String dinnerMenu = "";
+  String breakfastMenu = "Loading...";
+  String lunchMenu = "Loading...";
+  String dinnerMenu = "Loading...";
 
   @override
   void initState() {
@@ -35,8 +34,7 @@ class _MenuBoxState extends State<MenuBox> {
     final currTime = DateTime.now();
     String currHour = DateFormat('kk').format(currTime);
     int currHourInt = int.parse(currHour);
-    currHourInt = currHourInt%24;
-    print(currHourInt);
+    currHourInt = currHourInt % 24;
     if (currHourInt <= 11) {
       currentIndex = 0;
     } else if (currHourInt <= 16) {
@@ -44,26 +42,23 @@ class _MenuBoxState extends State<MenuBox> {
     } else {
       currentIndex = 2;
     }
-    var token = '';
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      token = preferences.getString("token") ?? '';
-    });
     final currDay = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
-    print(currDay);
     final messUrl = Uri.parse("$baseUrl/messmenu/$currDay");
-    http.Response response = await _client.get(
+    http.Response response = await http.get(
       messUrl,
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
-        'authorization': token
+        'authorization': widget.token
       },
     );
     var json = jsonDecode(response.body);
-    breakfastMenu = json["breakfast"];
-    lunchMenu = json["lunch"];
-    dinnerMenu = json["dinner"];
+    setState(() {
+      breakfastMenu = json["breakfast"];
+      lunchMenu = json["lunch"];
+      dinnerMenu = json["dinner"];
+      print("Menu fetched");
+    });
   }
 
   @override
@@ -96,6 +91,9 @@ class _MenuBoxState extends State<MenuBox> {
               description: dinnerMenu,
             ),
           ],
+        ),
+        const SizedBox(
+          height: 4,
         ),
         DotsIndicator(
           decorator: const DotsDecorator(

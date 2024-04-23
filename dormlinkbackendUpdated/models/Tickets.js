@@ -11,6 +11,10 @@ const ticketSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    category:{
+        type:String,
+        required:true
+    },
     title:{
         type:String,
         required:true
@@ -29,4 +33,4 @@ const ticketSchema=new mongoose.Schema({
     }
 },)
 
-module.export = mongoose.model('ticket',ticketSchema)
+module.exports = mongoose.model('ticket',ticketSchema)

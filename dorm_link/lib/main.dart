@@ -13,12 +13,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  runApp(
-      ProviderScope(
-        child: MyApp(
-          token: preferences.getString("token"),
-        ),
-      ));
+  runApp(ProviderScope(
+    child: MyApp(
+      token: preferences.getString("token"),
+    ),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,17 +31,20 @@ class MyApp extends StatelessWidget {
         title: 'Dorm Link',
         theme: AppTheme.theme,
         debugShowCheckedModeBanner: false,
-         home: token != null  ? (JwtDecoder.isExpired(token) ? LoginPage() :
-        MyHomePage(token: token,)
-    )
-           : LoginPage());
+        home: token != null
+            ? (JwtDecoder.isExpired(token)
+                ? LoginPage()
+                : MyHomePage(
+                    token: token,
+                  ))
+            : LoginPage());
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.token});
 
-  final token;
+  final String token;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,18 +52,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    now_playing(),
-    Complaints(),
-    ProfilePage(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 250, 255),
-      body: Center(child: _widgetOptions.elementAt(selectedIndex)),
+      body: Center(
+          child: [
+        HomeScreen(token: widget.token,),
+        const now_playing(),
+        const Complaints(),
+        const ProfilePage(),
+      ][selectedIndex]),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -75,10 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
             tabBorderRadius: 50,
             backgroundColor: Colors.white,
             gap: 4,
-            color: Color.fromARGB(255, 72, 76, 82),
-            activeColor: Color.fromARGB(178, 0, 0, 0),
-            tabBackgroundColor: Color.fromARGB(255, 241, 250, 255),
-            padding: EdgeInsets.all(16),
+            color: const Color.fromARGB(255, 72, 76, 82),
+            activeColor: const Color.fromARGB(178, 0, 0, 0),
+            tabBackgroundColor: const Color.fromARGB(255, 241, 250, 255),
+            padding: const EdgeInsets.all(16),
             tabs: const [
               GButton(
                 icon: Icons.home,

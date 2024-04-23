@@ -1,17 +1,13 @@
 import 'dart:convert';
-import 'package:dorm_link/main.dart';
 import 'package:dorm_link/src/Common_widgets/custom_form_text_field.dart';
 import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:dorm_link/src/features/auth/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-final firebase = FirebaseAuth.instance;
-
-final baseUrl = "http://192.168.7.179:3000";
+final baseUrl = "http://192.168.33.179:3000";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
