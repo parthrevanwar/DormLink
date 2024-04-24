@@ -12,7 +12,7 @@ const messMenuRoutes=require('./routes/messmenu');
 const attendanceRoutes=require('./routes/messattendence.js');
 const ticketsRoute=require('./routes/tickets');
 const addstudent=require('./routes/addstudentroute.js');
-const washingMachineRoutes = require('./routes/washingMachine.js');
+const washingMachineRoutes = require('./routes/washingMachine');
 const connectDB = require('./config/db.js');
 
 

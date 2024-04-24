@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_initicon/flutter_initicon.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NowPlayingCard extends StatelessWidget {
@@ -9,6 +10,7 @@ class NowPlayingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 160,
       width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(12),),
@@ -22,6 +24,32 @@ class NowPlayingCard extends StatelessWidget {
                 fontSize: 20),
           ),
           const Spacer(),
+          Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < 3; i++)
+                  Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 0),
+                      child: Align(
+                        heightFactor: 0.75,
+                        child: Initicon(text: "Full Name")
+                      )),
+                Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 0),
+                    child: const Align(
+                      heightFactor: 0.5,
+                      child: CircleAvatar(
+                          radius: 10,
+                          backgroundColor: Color(0xff209fa6),
+                          child: Text(
+                            "25",
+                            style: TextStyle(
+                                fontSize: 8, color: Colors.white),
+                          )),
+                    )),
+              ],
+              ),
+
 
         ],
       ),

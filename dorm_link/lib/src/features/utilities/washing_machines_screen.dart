@@ -33,7 +33,7 @@ class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
         'authorization': widget.token
       },
     );
-    final json = jsonDecode(response.body);
+    final json = jsonDecode(response.body.toString());
     print(json);
 
   }
