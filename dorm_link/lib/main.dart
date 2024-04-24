@@ -1,7 +1,7 @@
 import 'package:dorm_link/src/features/auth/login.dart';
+import 'package:dorm_link/src/features/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:dorm_link/src/features/nowplaying/now_playing_screen.dart';
 import 'src/features/complaints/complaints_screen.dart';
 import 'src/features/homepage/home_screen.dart';
 import 'src/features/profile/profilepage.dart';
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
           child: [
         HomeScreen(token: widget.token,),
-        const now_playing(),
+        UtilitiesScreen(token: widget.token,),
         const Complaints(),
         const ProfilePage(),
       ][selectedIndex]),
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               GButton(
                 icon: Icons.sports_soccer_outlined,
-                text: 'Now Playing',
+                text: 'Utilities',
               ),
               GButton(
                 icon: Icons.note,

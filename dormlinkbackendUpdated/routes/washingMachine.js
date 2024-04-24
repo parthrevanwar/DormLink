@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const washingMachineController = require('../controllers/washingMachineController');
+const washingMachineController = require('../controllers/washingMachine');
 const { get } = require('mongoose');
 
-router.get('/list-Washing-Machines', washingMachineController.getAllMachines);
+router.get('/list-washing-machines', washingMachineController.getAllMachines);
 
 router.post('/:machineId/book', washingMachineController.bookMachineSlot);
 

@@ -1,5 +1,5 @@
 import 'package:dorm_link/main.dart';
-import 'package:dorm_link/src/features/nowplaying/now_playing_screen.dart';
+import 'package:dorm_link/src/features/utilities/now_playing_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';

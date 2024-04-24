@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  booking_and_publish_slots
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

@@ -2,7 +2,7 @@ import 'package:dorm_link/src/features/homepage/menu_box.dart';
 import 'package:dorm_link/src/features/homepage/mess_attendance.dart';
 import 'package:dorm_link/src/features/homepage/qr_code_page.dart';
 import 'package:dorm_link/src/features/homepage/quick_actions.dart';
-import 'package:dorm_link/src/features/homepage/washingmachine.dart';
+import 'package:dorm_link/src/features/utilities/washingmachine.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
