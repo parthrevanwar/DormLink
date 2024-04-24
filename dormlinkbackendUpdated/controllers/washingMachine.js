@@ -50,14 +50,26 @@ exports.bookMachineSlot = async (req, res) => {
   // Get status of all slots for a washing machine
   exports.getMachineSlotsStatus = async (req, res) => {
     const machineId = req.params.machineId;
+    
   
     try {
       const machine = await WashingMachine.findById(machineId);
-  
+      const date=new Date();
+      const datestring = date.toISOString() ;
+
       if (!machine) {
         return res.status(404).json({ message: 'Machine not found' });
       }
-  
+      const olddate=machine.Date.toISOString();
+      if(olddate.split('T')[0]!==datestring.split('T')[0]){
+        console.log(date);
+        const machineupdate = await WashingMachine.findByIdAndUpdate(machineId,{
+          Date:date,
+          slots:Array.from({ length: 24 }, () => null)
+        },{new:true});
+        res.json({ slots: machineupdate.slots });
+      }
+      console.log(date);
       res.json({ slots: machine.slots });
     } catch (err) {
       res.status(500).json({ message: err.message });

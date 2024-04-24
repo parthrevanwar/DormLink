@@ -19,6 +19,10 @@ const washingMachineSchema = new mongoose.Schema({
         required:true,
         unique: true
     },
+    Date:{
+        type: Date,
+        default: Date.now
+    },
     location:{
         type:String,
         required:true
