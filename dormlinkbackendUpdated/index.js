@@ -39,7 +39,7 @@ app.use('/messmenu',authenticateToken, messMenuRoutes);//done
 app.use('/tickets',authenticateToken, ticketsRoute);//done
 app.use('/attendance',authenticateToken, attendanceRoutes);
 app.use('/addstudent',addstudent);
-app.use('/washingmachine' , washingMachineRoutes);
+app.use('/washingmachine' ,authenticateToken, washingMachineRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

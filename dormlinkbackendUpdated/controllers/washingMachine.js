@@ -18,6 +18,8 @@ exports.getAllMachines = async (req, res) => {
       res.status(500).json({ message: err.message });
     }
 };
+
+
 // Book a slot for a washing machine
 exports.bookMachineSlot = async (req, res) => {
     const machineId = req.params.machineId;
