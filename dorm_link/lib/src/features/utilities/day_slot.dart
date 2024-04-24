@@ -3,12 +3,25 @@ import 'package:dorm_link/src/features/utilities/time_slot.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:dorm_link/src/models/washing_machine.dart';
 
 class DaySlot extends StatelessWidget {
-  const DaySlot({super.key});
+  const DaySlot( this.washingMachine,{super.key, required this.token});
+
+  final WashingMachine washingMachine;
+  final String token;
 
   @override
   Widget build(BuildContext context) {
+    int findAvailableSlots() {
+      int count = 0;
+      for (var slot in washingMachine.slots) {
+        if (slot == null) {
+          count++;
+        }
+      }
+      return count;
+    }
     DateTime today = DateTime.now();
     String formattedDateToday = DateFormat('dd MMMM').format(today);
     return Container(
@@ -34,7 +47,7 @@ class DaySlot extends StatelessWidget {
                 // ),
                 // const Spacer(),
                 Text(
-                  "2 slots available",
+                  "${findAvailableSlots()} slots available",
                   style: GoogleFonts.poppins(
                       color: Theme.of(context).colorScheme.onBackground,
                       fontSize: 16),
@@ -58,7 +71,9 @@ class DaySlot extends StatelessWidget {
                     24,
                     (index) => TimeSlot(
                           hour: index,
-                          isFree: index % 2 == 0 ? true : false,
+                      washingMachine: washingMachine,
+                      token: token
+
                         ))),
             Padding(
               padding: EdgeInsets.only(top: 24),

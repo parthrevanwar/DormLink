@@ -1,10 +1,14 @@
 import 'package:dorm_link/src/features/utilities/day_slot.dart';
+import 'package:dorm_link/src/models/washing_machine.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BookSlot extends StatelessWidget {
-  const BookSlot({super.key});
+  const BookSlot(this.washingMachine,{super.key, required this.token});
+
+  final WashingMachine washingMachine;
+  final String token;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class BookSlot extends StatelessWidget {
               ),
             ),
 
-            DaySlot(),
+            DaySlot(washingMachine, token: token),
 
           ],),
         )

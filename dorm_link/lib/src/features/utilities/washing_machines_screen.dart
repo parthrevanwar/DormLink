@@ -2,58 +2,39 @@ import 'dart:convert';
 
 import 'package:dorm_link/src/features/utilities/washing_machine_card.dart';
 import 'package:dorm_link/src/models/washing_machine.dart';
+import 'package:dorm_link/src/provider/washing_machine_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:dorm_link/src/Common_widgets/customappbar.dart';
 import 'package:dorm_link/src/features/auth/register.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WashingMachinesScreen extends StatefulWidget {
+class WashingMachinesScreen extends ConsumerStatefulWidget {
   const WashingMachinesScreen({super.key, required this.token});
 
   final String token;
 
   @override
-  State<WashingMachinesScreen> createState() => _WashingMachinesScreenState();
+  ConsumerState<WashingMachinesScreen> createState() => _WashingMachinesScreenState();
 }
 
-class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
+class _WashingMachinesScreenState extends ConsumerState<WashingMachinesScreen> {
+  late Future<void> _washingMachinesFuture;
   @override
   void initState() {
-    _fetchWashingMachines();
+    _washingMachinesFuture = ref
+        .read(washingMachineProvider.notifier)
+        .fetchWashingMachines(widget.token);
     super.initState();
   }
 
-  var allWashingMachine = [];
 
-  Future<void> _fetchWashingMachines() async {
-    final washingMachineUrl =
-        Uri.parse("$baseUrl/washingMachine/list-Washing-Machines");
-    http.Response response = await http.get(
-      washingMachineUrl,
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-        'authorization': widget.token
-      },
-    );
 
-    final json = jsonDecode(response.body);
-    print(json);
-    setState(() {
-      for (int i = 0; i < json.length; i++) {
-        allWashingMachine.add(WashingMachine.fromJson(json[i]));
-      }
-    });
-    //print(washingMachine);
-  }
-
-  int currHour = DateTime.now().hour;
-
-  Widget mainContent = CircularProgressIndicator();
 
   @override
   Widget build(BuildContext context) {
+    final allWashingMachine = ref.watch(washingMachineProvider);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -66,7 +47,7 @@ class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
           SafeArea(
             minimum: EdgeInsets.all(20),
             child: FutureBuilder(
-                future: _fetchWashingMachines(),
+                future: _washingMachinesFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -76,10 +57,9 @@ class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
                   return Column(
                     children: [
                       for (var washingMachine in allWashingMachine)
-                        WashingMachineCard("${washingMachine.floor} Floor",
-                            isFree: washingMachine.slots[currHour] == null
-                                ? false
-                                : true),
+                        WashingMachineCard(washingMachine,
+                          token: widget.token,
+                        ),
                     ],
                   );
                 }),

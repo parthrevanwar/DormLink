@@ -1,20 +1,22 @@
 import 'package:dorm_link/src/features/utilities/book_slot.dart';
+import 'package:dorm_link/src/models/washing_machine.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WashingMachineCard extends StatelessWidget {
-  const WashingMachineCard(this.washingMachineName,
-      {super.key, required this.isFree});
+  const WashingMachineCard(this.washingMachine, {super.key, required this.token});
 
-  final String washingMachineName;
-  final bool? isFree;
+  final WashingMachine washingMachine;
+  final String token;
 
   @override
   Widget build(BuildContext context) {
+    int currHour = DateTime.now().hour;
+    bool isFree = washingMachine.slots[currHour] == null ? true : false;
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => BookSlot()));
+            .push(MaterialPageRoute(builder: (ctx) => BookSlot(washingMachine, token: token,)));
       },
       child: Container(
         padding: EdgeInsets.all(16),
@@ -36,7 +38,7 @@ class WashingMachineCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              washingMachineName,
+              "${washingMachine.floor} Floor",
               style: GoogleFonts.poppins(
                   color: Theme.of(context).colorScheme.onBackground,
                   fontWeight: FontWeight.w600,

@@ -4,6 +4,7 @@ import 'package:dorm_link/src/features/utilities/currently_playing.dart';
 import 'package:dorm_link/src/features/utilities/now_playing_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:dorm_link/src/features/auth/register.dart';
 
 class now_playing extends StatefulWidget {
   const now_playing({super.key, required this.token});
@@ -25,6 +26,20 @@ class _now_playingState extends State<now_playing> {
   void initState() {
     super.initState();
   }
+
+  // _fetchNumOfPlayers() async {
+  //   final sportsUrl = Uri.parse("$baseUrl/sports/playing");
+  //   http.Response response = await http.get(
+  //     sportsUrl,
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //       'Accept': 'application/json',
+  //       'authorization': widget.token
+  //     },
+  //   );
+  //   var json = jsonDecode(response.body);
+  //   print(json);
+  // }
 
   @override
   Widget build(BuildContext context) {
