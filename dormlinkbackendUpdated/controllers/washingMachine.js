@@ -3,8 +3,17 @@ const WashingMachine = require('../models/WashingMachine');
 
 exports.getAllMachines = async (req, res) => {
     try {
-      const machines = await WashingMachine.find();
-      res.json(machines);
+
+      const {hostel} = req.body;
+
+
+
+      const machines = await WashingMachine.find({location: hostel});
+       // Extract machine numbers from the query result
+       
+
+       // Return machine numbers as strings in the response
+       res.json(machines);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }

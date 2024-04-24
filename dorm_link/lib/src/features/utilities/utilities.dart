@@ -53,7 +53,7 @@ class UtilitiesScreen extends StatelessWidget {
                     text: "Currently",
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => now_playing()));
+                          builder: (ctx) => now_playing(token: token,)));
                     },
                     icon: Icon(
                       Icons.sports_baseball_outlined,

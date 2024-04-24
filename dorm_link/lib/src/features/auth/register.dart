@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-final baseUrl = "http://192.168.7.179:3000";
+final baseUrl = "http://192.168.162.98:3000";
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

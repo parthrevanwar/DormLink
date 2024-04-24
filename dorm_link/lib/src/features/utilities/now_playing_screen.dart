@@ -1,23 +1,33 @@
 import 'package:dorm_link/src/Common_widgets/customappbar.dart';
+import 'package:dorm_link/src/Common_widgets/custombigbutton.dart';
 import 'package:dorm_link/src/features/utilities/currently_playing.dart';
 import 'package:dorm_link/src/features/utilities/now_playing_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class now_playing extends StatefulWidget {
-  const now_playing({super.key});
+  const now_playing({super.key, required this.token});
+
+  final String token;
 
   @override
   State<now_playing> createState() => _now_playingState();
 }
 
 class _now_playingState extends State<now_playing> {
+  int numOfPlayersBadminton = 1;
+  int numOfPlayersFootball = 2;
+  int numOfPlayersCricket = 0;
+  int numOfPlayersTT = 4;
+  bool isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    int numOfPlayersBadminton = 4;
-    int numOfPlayersFootball = 4;
-    int numOfPlayersCricket = 0;
-    int numOfPlayersTT = 4;
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 241, 250, 255),
         appBar: AppBar(
@@ -35,119 +45,134 @@ class _now_playingState extends State<now_playing> {
                 children: [
                   Row(
                     children: [
-                      Expanded(child: NowPlayingCard(sportName: "Badminton")),
-                      Expanded(child: NowPlayingCard(sportName: "Badminton")),
+                      Expanded(
+                          child: NowPlayingCard(
+                        sportName: "Badminton",
+                        token: widget.token,
+                        numOfPlayers: numOfPlayersBadminton,
+                      )),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: NowPlayingCard(
+                        sportName: "Table Tennis",
+                        token: widget.token,
+                        numOfPlayers: numOfPlayersTT,
+                      )),
                     ],
                   ),
-                  // Row(
-                  //   children: [
-                  //
-                  //   ],
-                  // ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: NowPlayingCard(
+                        sportName: "Cricket",
+                        token: widget.token,
+                        numOfPlayers: numOfPlayersCricket,
+                      )),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Expanded(
+                          child: NowPlayingCard(
+                        sportName: "Football",
+                        token: widget.token,
+                        numOfPlayers: numOfPlayersFootball,
+                      )),
+                    ],
+                  ),
                 ],
               ),
             ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    scrollable: true,
-                    title: const Center(child: Text("Select Sport")),
-                    content: Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton + 1,
-                                      football: numOfPlayersFootball,
-                                      cricket: numOfPlayersCricket,
-                                      tt: numOfPlayersTT),
-                                ),
-                              );
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(),
-                          child: Text(
-                            "Badminton",
+            onPressed: isPlaying
+                ? () {
+                    setState(() {
+                      isPlaying = false;
+                      //initState();
+                    });
+                  }
+                : () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          scrollable: true,
+                          title: Center(
+                              child: Text(
+                            "Select Sport",
                             style: TextStyle(
                                 color:
                                     Theme.of(context).colorScheme.onBackground),
+                          )),
+                          content: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 4),
+                                child: CustomBigButton(
+                                  onTap: () {
+                                    setState(() {
+                                      isPlaying = true;
+                                      numOfPlayersBadminton++;
+                                      Navigator.of(context).pop();
+                                    });
+                                  },
+                                  title: "Badminton",
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 4),
+                                child: CustomBigButton(
+                                  onTap: () {
+                                    setState(() {
+                                      isPlaying = true;
+                                      numOfPlayersTT++;
+                                      Navigator.of(context).pop();
+                                    });
+                                  },
+                                  title: "Table Tennis",
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 4),
+                                child: CustomBigButton(
+                                  onTap: () {
+                                    setState(() {
+                                      isPlaying = true;
+                                      numOfPlayersCricket++;
+                                      Navigator.of(context).pop();
+                                    });
+                                  },
+                                  title: "Cricket",
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0, vertical: 4),
+                                child: CustomBigButton(
+                                  onTap: () {
+                                    setState(() {
+                                      isPlaying = true;
+                                      numOfPlayersFootball++;
+                                      Navigator.of(context).pop();
+                                    });
+                                  },
+                                  title: "Football",
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton,
-                                      football: numOfPlayersFootball + 1,
-                                      cricket: numOfPlayersCricket,
-                                      tt: numOfPlayersTT),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Football",
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground),
-                            )),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton,
-                                      football: numOfPlayersFootball,
-                                      cricket: numOfPlayersCricket + 1,
-                                      tt: numOfPlayersTT),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Cricket",
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground),
-                            )),
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Playing(
-                                      badminton: numOfPlayersBadminton,
-                                      football: numOfPlayersFootball,
-                                      cricket: numOfPlayersCricket,
-                                      tt: numOfPlayersTT + 1),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Table Tennis",
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onBackground),
-                            )),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-            child: const Icon(Icons.add)));
+                        );
+                      },
+                    );
+                  },
+            child: isPlaying
+                ? const Icon(Icons.check_rounded)
+                : const Icon(Icons.add)));
   }
 }

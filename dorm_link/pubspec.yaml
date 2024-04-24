@@ -83,6 +83,11 @@ flutter:
     - assets/images/google.png
     - assets/images/washing-machine.svg
     - assets/images/food-icon.svg
+    - assets/images/badmi.svg
+    - assets/images/table.svg
+    - assets/images/crick.svg
+    - assets/images/footb.svg
+    - assets/images/billi.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
