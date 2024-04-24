@@ -56,7 +56,7 @@ exports.bookMachineSlot = async (req, res) => {
   exports.addNewMachine = async (req,res) => {
 
     try{
-    const {machineNumber , location, floor } = req.fields;
+    const {machineNumber , location, floor } = req.body;
 
     if (!machineNumber)
             return res.status(500).send({error:"Machine number is required"});
@@ -72,7 +72,7 @@ exports.bookMachineSlot = async (req, res) => {
       floor
     });
 
-    await WashingMachine.save();
+    await newMachine.save();
 
     res.status(201).send({
       success:true,
