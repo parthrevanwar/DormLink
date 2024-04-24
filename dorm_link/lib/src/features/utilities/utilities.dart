@@ -9,40 +9,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:dorm_link/src/features/auth/register.dart';
 import 'package:http/http.dart' as http;
 
-class UtilitiesScreen extends StatefulWidget {
+class UtilitiesScreen extends StatelessWidget {
   const UtilitiesScreen({super.key, required this.token});
 
   final String token;
-
-  @override
-  State<UtilitiesScreen> createState() => _UtilitiesScreenState();
-}
-
-class _UtilitiesScreenState extends State<UtilitiesScreen> {
-  final _sports = [];
-
-  @override
-  void initState() {
-    _fetchAllSports();
-    super.initState();
-  }
-
-  void _fetchAllSports() async {
-    final sportsUrl = Uri.parse("$baseUrl/sports");
-    http.Response response = await http.get(
-      sportsUrl,
-      headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json',
-        'authorization': widget.token
-      },
-    );
-    var json = jsonDecode(response.body);
-    for (int i = 0; i < json.length; ++i) {
-      _sports.add(json[i]["sportname"]);
-    }
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +44,7 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) =>
-                            WashingMachinesScreen(token: widget.token)));
+                            WashingMachinesScreen(token: token)));
                   },
                 ),
                 SlotsCard(
@@ -83,7 +53,7 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
                     text: "Currently",
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => now_playing()));
+                          builder: (ctx) => now_playing(token: token,)));
                     },
                     icon: Icon(
                       Icons.sports_baseball_outlined,

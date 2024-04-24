@@ -7,7 +7,6 @@ class AnnouncementsNotifier extends StateNotifier<List<dynamic>> {
   AnnouncementsNotifier() : super([]);
 
   Future<void> fetchAnnouncements(String? token) async {
-    print("object");
     if (token == null) {
       print("no token");
       return;

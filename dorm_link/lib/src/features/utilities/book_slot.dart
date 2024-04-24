@@ -1,4 +1,3 @@
-import 'package:booking_and_publish_slots/components/booking_and_publish_slots_main.dart';
 import 'package:dorm_link/src/features/utilities/day_slot.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

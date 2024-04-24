@@ -40,7 +40,7 @@ class TimeSlot extends StatelessWidget {
             child: Text("$time12Hour:00 $ampm",
                 style: GoogleFonts.inter(
                     color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500))),
       ),
     );

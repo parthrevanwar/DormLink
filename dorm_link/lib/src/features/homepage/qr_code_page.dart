@@ -40,7 +40,7 @@ class _QRCodePageState extends State<QRCodePage> {
         child: Column(
           children: [
             QrImageView(
-              data: "data",
+              data: "Fuck you",
               size: MediaQuery.of(context).size.width,
             ),
             Text(
