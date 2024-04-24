@@ -10,16 +10,15 @@ exports.getAllMachines = async (req, res) => {
 
       const machines = await WashingMachine.find({location: hostel});
        // Extract machine numbers from the query result
-       const machineNumbers = machines.map(machine => machine.machineNumber.toString());
+      //  const machineNumbers = machines.map(machine => machine.machineNumber.toString());
 
        // Return machine numbers as strings in the response
-       res.json(machineNumbers);
+       res.json(machines);
+       
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
 };
-
-
 // Book a slot for a washing machine
 exports.bookMachineSlot = async (req, res) => {
     const machineId = req.params.machineId;
