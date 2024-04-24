@@ -24,7 +24,7 @@ const washingMachineSchema = new mongoose.Schema({
         required:true
     },
     floor:{
-        type:Number,
+        type: String,
         required:true
     },
     slots:{

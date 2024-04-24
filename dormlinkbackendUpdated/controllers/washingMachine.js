@@ -74,6 +74,9 @@ exports.bookMachineSlot = async (req, res) => {
         return res.status(500).send({error:"location is required"});
     if( !floor)
         return res.status(500).send({error:"Floor is required"});
+    // if(floor !== "Ground" || floor !== "First" || floor !== "Second" || floor !== "Third" ){
+    //   return res.status(500).send({error:"Floor should be one of either Ground, First or Second"}); 
+    // }
 
 
     const newMachine = await new WashingMachine({
