@@ -1,13 +1,23 @@
 import 'package:dorm_link/src/Common_widgets/customappbar.dart';
+import 'package:dorm_link/src/features/auth/login.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import './main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
   @override
   Widget build(BuildContext context) {
+
+    void logOut() async {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.clear();
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (ctx) => LoginPage()));
+    }
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 241, 250, 255),
       body: Column(
@@ -22,7 +32,7 @@ class ProfilePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: logOut,
                   icon: const Icon(Icons.settings),
                   iconSize: 35,
                 ),

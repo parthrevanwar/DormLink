@@ -1,11 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class WashingMachineCard extends StatelessWidget {
-  const WashingMachineCard({super.key});
+class SportsCard extends StatelessWidget {
+  const SportsCard({super.key, required this.icon, required this.sportName, required this.description});
+
+  final Widget icon;
+  final String sportName;
+  final Widget description;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,8 @@ class WashingMachineCard extends StatelessWidget {
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: SvgPicture.asset("assets/images/washing-machine.svg")
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: icon
           ),
           Expanded(
             child: Padding(
@@ -38,39 +40,40 @@ class WashingMachineCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Washing Machine",
+                    sportName,
                     textAlign: TextAlign.left,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600, fontSize: 18, color: Theme.of(context).colorScheme.onBackground),
                   ),
-                  Text(
-                    "1/4 is free",
-                    style: GoogleFonts.poppins(color: Colors.grey),
-                    softWrap: true,
-                  ),
+                  description,
+                  // Text(
+                  //   text,
+                  //   style: GoogleFonts.poppins(color: Colors.grey),
+                  //   softWrap: true,
+                  // ),
                   const SizedBox(height: 10,),
                   Row(
                     children: [
-                      //   Expanded(
-                      //     child: Container(
-                      //       child: TextButton(
-                      //         onPressed: (){},
-                      //         child: Text(
-                      //             "View Slots"
-                      //         ),
-                      //       ),
-                      //       decoration: ShapeDecoration(
-                      //         shape: RoundedRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(12),
-                      //           side: BorderSide(
-                      //             width: 1,
-                      //             color: Theme.of(context).colorScheme.primary,
-                      //           )
-                      //         )
-                      //       ),
-                      //     ),
-                      //   ),
-                      //   SizedBox(width: 10,),
+                      Expanded(
+                        child: Container(
+                          child: TextButton(
+                            onPressed: (){},
+                            child: Text(
+                                "VIEW SLOTS"
+                            ),
+                          ),
+                          decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  side: BorderSide(
+                                    width: 1,
+                                    color: Theme.of(context).colorScheme.primary,
+                                  )
+                              )
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10,),
                       Expanded(
                         child: Container(
                           child: TextButton(
