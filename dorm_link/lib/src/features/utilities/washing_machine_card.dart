@@ -7,7 +7,7 @@ class WashingMachineCard extends StatelessWidget {
       {super.key, required this.isFree});
 
   final String washingMachineName;
-  final bool isFree;
+  final bool? isFree;
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +49,14 @@ class WashingMachineCard extends StatelessWidget {
               children: [
                 Icon(
                   Icons.circle,
-                  color: isFree ? Colors.green : Colors.red,
+                  color: isFree! ? Colors.green : Colors.red,
                   size: 12,
                 ),
                 const SizedBox(
                   width: 8,
                 ),
                 Text(
-                  isFree ? "Currently Free" : "In use",
+                  isFree! ? "Currently Free" : "In use",
                   style: GoogleFonts.inter(
                       color: Theme.of(context).colorScheme.onBackground,
                       fontWeight: FontWeight.w600,

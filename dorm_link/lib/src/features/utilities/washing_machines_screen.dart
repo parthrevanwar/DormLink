@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:dorm_link/src/features/utilities/washing_machine_card.dart';
+import 'package:dorm_link/src/models/washing_machine.dart';
 import 'package:flutter/material.dart';
 import 'package:dorm_link/src/Common_widgets/customappbar.dart';
 import 'package:dorm_link/src/features/auth/register.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class WashingMachinesScreen extends StatefulWidget {
@@ -16,15 +18,17 @@ class WashingMachinesScreen extends StatefulWidget {
 }
 
 class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
-
   @override
   void initState() {
     _fetchWashingMachines();
     super.initState();
   }
 
-  void _fetchWashingMachines() async {
-    final washingMachineUrl = Uri.parse("$baseUrl/washingMachine/list-Washing-Machines");
+  var allWashingMachine = [];
+
+  Future<void> _fetchWashingMachines() async {
+    final washingMachineUrl =
+        Uri.parse("$baseUrl/washingMachine/list-Washing-Machines");
     http.Response response = await http.get(
       washingMachineUrl,
       headers: {
@@ -33,10 +37,21 @@ class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
         'authorization': widget.token
       },
     );
+
     final json = jsonDecode(response.body);
     print(json);
-
+    setState(() {
+      for (int i = 0; i < json.length; i++) {
+        allWashingMachine.add(WashingMachine.fromJson(json[i]));
+      }
+    });
+    //print(washingMachine);
   }
+
+  int currHour = DateTime.now().hour;
+
+  Widget mainContent = CircularProgressIndicator();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,20 +65,24 @@ class _WashingMachinesScreenState extends State<WashingMachinesScreen> {
           CustomAppBar(title: "Washing Machines"),
           SafeArea(
             minimum: EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(children: [
-                Expanded(child: WashingMachineCard("Ground Floor", isFree: true,)),
-                  Expanded(child: WashingMachineCard("First Floor", isFree: false,)),
-                ],),
-                Row(children: [
-                  Expanded(child: WashingMachineCard("Second Floor", isFree: true,)),
-                  Expanded(child: WashingMachineCard("Third Floor", isFree: true,)),
-                ],)
-              ],
-            ),
+            child: FutureBuilder(
+                future: _fetchWashingMachines(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Column(
+                    children: [
+                      for (var washingMachine in allWashingMachine)
+                        WashingMachineCard("${washingMachine.floor} Floor",
+                            isFree: washingMachine.slots[currHour] == null
+                                ? false
+                                : true),
+                    ],
+                  );
+                }),
           ),
         ],
       ),
