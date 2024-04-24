@@ -12,7 +12,11 @@ const messMenuRoutes=require('./routes/messmenu');
 const attendanceRoutes=require('./routes/messattendence.js');
 const ticketsRoute=require('./routes/tickets');
 const addstudent=require('./routes/addstudentroute.js');
-const washingMachineRoutes = require('./routes/washingMachine');
+const washingMachineRoutes = require('./routes/washingMachine.js');
+const menuPdfRoutes = require('./routes/menuPdf.js');
+
+
+
 const connectDB = require('./config/db.js');
 
 
@@ -40,7 +44,7 @@ app.use('/tickets',authenticateToken, ticketsRoute);//done
 app.use('/attendance',authenticateToken, attendanceRoutes);
 app.use('/addstudent',addstudent);
 app.use('/washingmachine' ,authenticateToken, washingMachineRoutes);
-
+app.use('/menupdf' ,authenticateToken, menuPdfRoutes);
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

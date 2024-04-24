@@ -13,6 +13,8 @@ exports.createTicketController = async (req, res) => {
         
         if (!name)
             return res.status(500).send({error:"Name is required"});
+        if (!category)
+            return res.status(500).send({error:"Category is required"});
         if (!title)
             return res.status(500).send({error:"Title is required"});
         if( !description)
@@ -239,7 +241,7 @@ exports.updateTicketController=async(req,res)=>{
 exports.updateTicketStatusController=async(req,res)=>{
     try {
         const {status} = req.body;
-        const id=req.params.pid;
+        const {id}=req.params;
         
         
         

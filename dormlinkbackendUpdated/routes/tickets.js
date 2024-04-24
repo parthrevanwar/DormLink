@@ -15,6 +15,6 @@ router.post('/update-ticket/:pid', updateTicketController);
 router.get('/get-op-ticket',getOpenTicketController);
 router.get('/get-cl-ticket',getClosedTicketController);
 router.get('/delete-ticket/:pid',deleteTicketController);
-router.get('/update-ticket-status/:id' , updateTicketStatusController);
+router.put('/update-ticket-status/:id' , updateTicketStatusController);
 
 module.exports = router;
