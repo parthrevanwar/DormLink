@@ -4,7 +4,7 @@ class WashingMachine {
   String id;
   int machineNumber;
   String location;
-  int floor;
+  String floor;
   List<String?> slots;
   int v;
 
