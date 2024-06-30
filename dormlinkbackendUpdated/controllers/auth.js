@@ -64,8 +64,8 @@ const loginUser = async (req, res) => {
     const hostelInfo = await HostelInfo.findOne({ enrollmentNo: enrollmentNo });
     if (!hostelInfo) {
       console.log(hostelInfo);
-      console.log("Invalid enrollment number123")
-      return res.status(400).send('Invalid enrollment number123');
+      console.log("Invalid enrollment number")
+      return res.status(400).send('Invalid enrollment number');
     }
     console.log(hostelInfo);
     // Generate a JWT token including enrollment number, hostel, and isAdmin status

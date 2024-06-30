@@ -1,11 +1,18 @@
 const MessAttendance = require('../models/Messattendence');
 const User = require('../models/User');
+const moment = require('moment');
 
 exports.addAttendance = async (req, res) => {
   try {
-    const { date, mealType, attendees } = req.body;
+    const { mealType, attendees } = req.body;
+    const date = moment().startOf('day').toDate();
     // const user = await User.findById(attendees);
     // const enrollmentNo =user.enrollmentNo;
+    const existingAttendance = await MessAttendance.findOne({ date, mealType });
+    if (existingAttendance) {
+      return res.status(400).json({ status: "fail", message: "Attendance for this date and meal type already exists." });
+    }
+
     const attendance = new MessAttendance({ date, mealType, enrollmentNo: attendees });
     await attendance.save();
     res.status(201).json({status :"success"});

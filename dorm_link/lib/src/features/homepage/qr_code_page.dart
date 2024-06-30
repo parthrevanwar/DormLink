@@ -26,6 +26,7 @@ class _QRCodePageState extends State<QRCodePage> {
     setState(() {
       enrollmentNo = preferences.getString("enrollmentNo") ?? '';
       hostel = preferences.getString("hostel") ?? '';
+
     });
   }
   @override
@@ -40,7 +41,7 @@ class _QRCodePageState extends State<QRCodePage> {
         child: Column(
           children: [
             QrImageView(
-              data: "Fuck you",
+              data: enrollmentNo,
               size: MediaQuery.of(context).size.width,
             ),
             Text(

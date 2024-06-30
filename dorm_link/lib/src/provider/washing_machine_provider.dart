@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dorm_link/src/features/auth/register.dart';
@@ -14,7 +15,7 @@ class WashingMachineNotifier extends StateNotifier<List<dynamic>> {
       return;
     }
     final washingMachineUrl =
-    Uri.parse("$baseUrl/washingmachine/list-washing-machines");
+        Uri.parse("$baseUrl/washingmachine/list-washing-machines");
     http.Response response = await http.get(
       washingMachineUrl,
       headers: {
@@ -25,11 +26,13 @@ class WashingMachineNotifier extends StateNotifier<List<dynamic>> {
     );
     final allWashingMachine = [];
     final json = jsonDecode(response.body);
-    print(json);
+    if (kDebugMode) {
+      print(json);
+    }
 
-      for (int i = 0; i < json.length; i++) {
-        allWashingMachine.add(WashingMachine.fromJson(json[i]));
-      }
+    for (int i = 0; i < json.length; i++) {
+      allWashingMachine.add(WashingMachine.fromJson(json[i]));
+    }
     state = allWashingMachine;
   }
 }

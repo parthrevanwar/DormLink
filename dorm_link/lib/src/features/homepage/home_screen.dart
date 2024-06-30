@@ -1,6 +1,7 @@
 import 'package:dorm_link/src/features/homepage/menu_box.dart';
 import 'package:dorm_link/src/features/homepage/mess_attendance.dart';
 import 'package:dorm_link/src/features/homepage/qr_code_page.dart';
+import 'package:dorm_link/src/features/homepage/qr_scanner.dart';
 import 'package:dorm_link/src/features/homepage/quick_actions.dart';
 import 'package:dorm_link/src/features/utilities/washingmachine.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var name = ' ';
+  var isAdmin=true;
 
-  Future<void> _loadName() async {
+  Future<String> _loadName() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
       name = preferences.getString("name") ?? '';
-    });
+      isAdmin=preferences.getBool("isAdmin") ?? false;
+      return name ;
   }
 
   @override
@@ -102,8 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       QuickActionsTile(
                         icon: Icons.qr_code,
-                        text: "View QR Code",
+                        text: true?"Scan QR Code":"View QR Code",
                         onTap: () {
+                          true?Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => QrScannerPage(token: widget.token,))):
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => QRCodePage()));
                         },
