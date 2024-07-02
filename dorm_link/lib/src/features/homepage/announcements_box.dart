@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dorm_link/src/features/homepage/announcement_card.dart';
 import 'package:dorm_link/src/provider/announcement_provider.dart';
 import 'package:flutter/material.dart';
@@ -67,12 +69,13 @@ class _AnnouncementsBoxState extends ConsumerState<AnnouncementsBox> {
                         )
                       : ListView.builder(
                           shrinkWrap: true,
-                          itemCount: _myAnnouncements.length,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: min(_myAnnouncements.length,7),
                           itemBuilder: (context, index) {
                             return AnnouncementCard(
-                              title: _myAnnouncements[index][0],
-                              createdBy: _myAnnouncements[index][1],
-                              date: _myAnnouncements[index][2],
+                              title: _myAnnouncements[_myAnnouncements.length-index-1][0],
+                              createdBy: _myAnnouncements[_myAnnouncements.length-index-1][1],
+                              date: _myAnnouncements[_myAnnouncements.length-index-1][2],
                             );
                           },
                         )),

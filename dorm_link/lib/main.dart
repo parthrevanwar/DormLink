@@ -1,6 +1,9 @@
+import 'package:dorm_link/src/UserData/userdata.dart';
 import 'package:dorm_link/src/features/auth/login.dart';
 import 'package:dorm_link/src/features/utilities/utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'src/features/complaints/complaints_screen.dart';
 import 'src/features/homepage/home_screen.dart';
@@ -11,13 +14,24 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
+  final user= Get.put(UserController());
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
+  user.token=preferences.getString("token");
+  user.userid=preferences.getString("userId");
+  user.enrollmentno=preferences.getString("enrollmentNo");
+  user.name=preferences.getString("name");
+  user.hostel=preferences.getString("hostel");
+  user.roomno=preferences.getString("roomNo");
+  user.isadmin=preferences.getBool("isAdmin");
   runApp(ProviderScope(
     child: MyApp(
       token: preferences.getString("token"),
     ),
   ));
+}
+
+class AuthenticationRepository {
 }
 
 class MyApp extends StatelessWidget {

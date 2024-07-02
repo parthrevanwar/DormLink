@@ -33,14 +33,15 @@ class _MessAttendanceState extends State<MessAttendance> {
     var json = jsonDecode(response.body);
     print(json);
 
-    for (int i = 0; i < json.length; i++) {
-      int year = int.parse(json[i]["date"].substring(0, 4));
-      int month = int.parse(json[i]["date"].substring(5, 7));
-      int intDate = int.parse(json[i]["date"].substring(8, 10));
-      DateTime date = DateTime.utc(year, month, intDate);
-      _events[date] = true;
-    }
-    setState(() {});
+    setState(() {
+      for (int i = 0; i < json.length; i++) {
+        int year = int.parse(json[i]["date"].substring(0, 4));
+        int month = int.parse(json[i]["date"].substring(5, 7));
+        int intDate = int.parse(json[i]["date"].substring(8, 10));
+        DateTime date = DateTime.utc(year, month, intDate);
+        _events[date] = true;
+      }
+    });
   }
 
   @override

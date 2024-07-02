@@ -1,13 +1,25 @@
 import 'package:dorm_link/src/Common_widgets/customappbar.dart';
 import 'package:dorm_link/src/features/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 // import 'package:google_nav_bar/google_nav_bar.dart';
 // import './main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../../UserData/userdata.dart';
+
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final user= Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
 
@@ -33,7 +45,7 @@ class ProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: IconButton(
                   onPressed: logOut,
-                  icon: const Icon(Icons.settings),
+                  icon: const Icon(Icons.logout),
                   iconSize: 35,
                 ),
               ),
@@ -57,24 +69,22 @@ class ProfilePage extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                child: const Center(
+                child: Center(
                     child: Text(
-                      'SHASHANK ARORA',
-                      style: TextStyle(
+                      user.name!,
+                      style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 24,
                         color: Color(0xFF2B2E35),
                       ),
                     )),
               ),
-              Container(
-                child: const Text('IIT2022502',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      color: Color(0xFF70788A),
-                    )),
-              ),
+              Text(user.enrollmentno!,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Color(0xFF70788A),
+                  )),
               Container(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: Row(
@@ -91,7 +101,7 @@ class ProfilePage extends StatelessWidget {
                                 )),
                           ),
                           Center(
-                            child: Text('BH-3',
+                            child: Text(user.hostel!,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -113,7 +123,7 @@ class ProfilePage extends StatelessWidget {
                                 )),
                           ),
                           Center(
-                            child: Text('714',
+                            child: Text(user.roomno!,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,

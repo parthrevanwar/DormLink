@@ -18,7 +18,6 @@ class QrScannerPage extends StatefulWidget {
 
   final String token;
 
-
   @override
   State<QrScannerPage> createState() => _QrScannerPage();
 }
@@ -42,15 +41,15 @@ class _QrScannerPage extends State<QrScannerPage> {
 
   Future<String?> _loadtoken() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    token=preferences.getString("token") ?? '';
-    return token ;
+    token = preferences.getString("token") ?? '';
+    return token;
   }
+
   @override
   void initState() {
     _loadtoken();
     super.initState();
   }
-
 
   List<BarcodeFormat> selectedFormats = [..._possibleFormats];
 
@@ -65,7 +64,10 @@ class _QrScannerPage extends State<QrScannerPage> {
           children: [
             const CustomAppBar(title: "Scan Qr"),
             Spacer(),
-            Center(child: SvgPicture.asset("assets/images/qrcode.svg")),
+            Center(
+                child: GestureDetector(
+                    onTap: _scan,
+                    child: SvgPicture.asset("assets/images/qrcode.svg"))),
             Spacer(),
             Center(
               child: Text(
@@ -75,10 +77,7 @@ class _QrScannerPage extends State<QrScannerPage> {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                     fontSize: 16,
-                    color: Theme
-                        .of(context)
-                        .colorScheme
-                        .onBackground),
+                    color: Theme.of(context).colorScheme.onBackground),
               ),
             ),
             Spacer(),
@@ -132,10 +131,12 @@ class _QrScannerPage extends State<QrScannerPage> {
   final _registerUrl = Uri.parse("register");
 
   void markattaindance() async {
-    if(rollno==null){
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(
-            "Scan again", style: TextStyle(color: Colors.white),)));
+    if (rollno == null) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+        "Scan again",
+        style: TextStyle(color: Colors.white),
+      )));
       return;
     }
     http.Response response = await _client.post(_createattaindanceUrl,
@@ -150,14 +151,18 @@ class _QrScannerPage extends State<QrScannerPage> {
         }));
     print(response.statusCode.toString());
     if (response.statusCode == 201) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(
-            "Attaindance recorded", style: TextStyle(color: Colors.white),)));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+        "Attaindance recorded",
+        style: TextStyle(color: Colors.white),
+      )));
       Navigator.of(context).pop();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(
-            response.body, style: const TextStyle(color: Colors.white),)));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+        response.body,
+        style: const TextStyle(color: Colors.white),
+      )));
     }
   }
 }

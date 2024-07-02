@@ -87,6 +87,7 @@ const loginUser = async (req, res) => {
       name:user.name,
       isAdmin: hostelInfo.isAdmin, 
       roomNo: hostelInfo.roomNo,
+      userId: user._id,
       token 
     });
   } catch (error) {

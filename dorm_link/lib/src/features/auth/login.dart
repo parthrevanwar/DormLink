@@ -59,12 +59,16 @@ class _LoginPageState extends State<LoginPage> {
       var myHostel = json["hostel"];
       var myEnrollmentNo = json["enrollmentNo"];
       var isadmin=json["isAdmin"];
+      var userid=json["userId"];
+      var roomNo=json["roomNo"];
       print(json);
       preferences.setString("name", myName);
       preferences.setString("token", myToken);
       preferences.setString("hostel", myHostel);
       preferences.setString("enrollmentNo", myEnrollmentNo);
       preferences.setBool("isAdmin", isadmin);
+      preferences.setString("userId",userid );
+      preferences.setString("roomNo",roomNo );
 
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Welcome $myName !", style: TextStyle(color: Colors.white),)));

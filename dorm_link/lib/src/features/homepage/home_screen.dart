@@ -1,12 +1,14 @@
+import 'package:dorm_link/src/UserData/userdata.dart';
+import 'package:dorm_link/src/features/homepage/create_announcment.dart';
 import 'package:dorm_link/src/features/homepage/menu_box.dart';
 import 'package:dorm_link/src/features/homepage/mess_attendance.dart';
 import 'package:dorm_link/src/features/homepage/qr_code_page.dart';
 import 'package:dorm_link/src/features/homepage/qr_scanner.dart';
 import 'package:dorm_link/src/features/homepage/quick_actions.dart';
-import 'package:dorm_link/src/features/utilities/washingmachine.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'announcements_box.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,14 +21,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var name = ' ';
+
+  final user= Get.put(UserController());
+  var name = '';
   var isAdmin=true;
 
-  Future<String> _loadName() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-      name = preferences.getString("name") ?? '';
-      isAdmin=preferences.getBool("isAdmin") ?? false;
-      return name ;
+  Future<void> _loadName() async {
+    name=user.name!;
+    isAdmin=user.isadmin!;
   }
 
   @override
@@ -64,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Center(
                   child: Text(
-                    'BH-1',
+                    user.hostel!.substring(0,2).toUpperCase()+"-"+user.hostel!.substring(2,3),
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
@@ -104,9 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       QuickActionsTile(
                         icon: Icons.qr_code,
-                        text: true?"Scan QR Code":"View QR Code",
+                        text: isAdmin?"Scan QR Code":"View QR Code",
                         onTap: () {
-                          true?Navigator.of(context).push(MaterialPageRoute(
+                          isAdmin?Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => QrScannerPage(token: widget.token,))):
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => QRCodePage()));
@@ -139,6 +141,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => NewAnnouncement()));
+        },
+        child: Icon(Icons.add,color: Colors.white,),
       ),
     );
   }
